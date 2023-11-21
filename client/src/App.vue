@@ -1,5 +1,5 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
 import NavBar from "./components/global/NavBar.vue";
 
 // export {
@@ -20,7 +20,7 @@ import NavBar from "./components/global/NavBar.vue";
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>-->
-  <HelloWorld msg="Vite and Vue" /> 
+  <!-- <HelloWorld msg="Vite and Vue" />  -->
 </template>
 
 <style scoped>

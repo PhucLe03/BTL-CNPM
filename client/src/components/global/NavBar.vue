@@ -8,44 +8,21 @@
           <img
             class="phuc_logo"
             alt="SGSW"
-            src="../assets/images/sgswlogo.png"
+            src="vite.svg"
           />
-          <a class="navbar-brand" href="home">BK EC</a>
+          
+          <a class="navbar-brand" href="home">BK Smart Printer</a>
           <div
             class="navbar-collapse collapse d-sm-inline-flex"
           >
-            <ul class="navbar-nav flex-grow-1 justify-content-evenly">
-              <li>
-                <div class="dropdown">
-                  <div
-                    class="dropdown-toggle phuc_nav_button phuc_nav"
-                    type="button"
-                    id="dropdownProductButton"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Sản phẩm {{ productdropdown }}
-                  </div>
-                  <ul
-                    class="dropdown-menu phuc_nav"
-                    aria-labelledby="dropdownProductButton"
-                  >
-                    <li class="" v-for="option in products" :key="option">
-                      <a
-                        class="dropdown-item"
-                        @click="productdropdown = option"
-                        :href="option.link"
-                        >{{ option.title }}</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-            <!-- <div class="form-floating mb">
-              <input class="form-control" placeholder="" type="search"/>
-              <label class="form-label">Bạn muốn tìm gì</label>
-            </div> -->
+          <ul class="navbar-nav flex-grow-1 justify-content-evenly">
+            <li class="phuc_nav">
+              <a class="nav-link" href="manage">Quản lý máy in</a>
+            </li>
+            <li class="phuc_nav">
+              <a class="nav-link" href="about">Giới thiệu</a>
+            </li>
+          </ul>
             <form class="form-inline">
               <input
                 class="form-control"
@@ -55,31 +32,7 @@
               />
               <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
             </form>
-            <ul class="navbar-nav flex-grow-1 justify-content-evenly">
-              <li class="phuc_nav">
-                <a class="nav-link" href="privacy">Trao đổi</a>
-              </li>
-              <li class="phuc_nav">
-                <a class="nav-link" href="about">Liên hệ</a>
-              </li>
-            </ul>
-          </div>
-          <!-- </div> -->
-          <div class="navbar-collapse collapse d-sm-inline-flex">
-            <ul class="navbar-nav flex-grow-1 justify-content-end">
-              <li class="phuc_nav">
-                <a class="nav-link" href="cart">
-                  <span class="material-symbols-outlined"> shopping_cart </span
-                  >Giỏ hàng</a
-                >
-              </li>
-              <li class="phuc_nav">
-                <a class="nav-link" href="login">
-                  <span class="material-symbols-outlined"> person </span>
-                  Đăng nhập</a
-                >
-              </li>
-            </ul>
+            
           </div>
         </div>
       </nav>
