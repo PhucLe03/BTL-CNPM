@@ -103,3 +103,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+} 
+
+.sidebar_item {
+  flex-grow: 1;
+}
