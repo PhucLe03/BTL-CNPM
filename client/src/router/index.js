@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import PrinterManagement from "@/Views/PrinterManagement.vue";
+import Printer from "@/Views/PrinterManagement/Printer.vue";
+import User from "@/Views/PrinterManagement/User.vue";
+import Extra from "@/Views/PrinterManagement/Extra.vue";
 import Home from "@/Views/Home.vue";
 import About from "@/Views/About.vue";
 
@@ -22,7 +25,31 @@ const routes = [
     name: "PrinterManagement",
     component: PrinterManagement,
     meta: {
+      title: "Quản lý",
+    },
+  },
+  {
+    path: "/manage/mayin",
+    name: "MayIn",
+    component: Printer,
+    meta: {
       title: "Quản lý máy in",
+    },
+  },
+  {
+    path: "/manage/nguoidung",
+    name: "NguoiDung",
+    component: User,
+    meta: {
+      title: "Quản lý người dùng",
+    },
+  },
+  {
+    path: "/manage/extra",
+    name: "Extra",
+    component: Extra,
+    meta: {
+      title: "Quản lý thêm",
     },
   },
   {
