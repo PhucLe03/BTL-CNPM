@@ -1,6 +1,6 @@
 <script setup>
 // import HelloWorld from "./components/HelloWorld.vue";
-import NavBar from "./components/global/NavBar.vue";
+// import NavBar from "./components/global/NavBar.vue";
 
 // export {
 //   name: "App",
@@ -9,7 +9,7 @@ import NavBar from "./components/global/NavBar.vue";
 </script>
 
 <template>
-  <NavBar />
+  <!-- <NavBar /> -->
   <router-view/>
   <!-- <div class="phuc_clear" />
   <div>
