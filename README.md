@@ -23,7 +23,7 @@ Hệ thống cung cấp các chức năng quản lý các tác vụ in, theo dõ
 + Khởi tạo cở sở dữ liệu
 + Khởi động ứng dụng
 
-  ## Người đóng góp
+## Người đóng góp
 
 [Lê Hoàng Phúc](https://github.com/PhucLe03)
 
