@@ -1,0 +1,40 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import MayInView from '../views/MayInView.vue'
+import ViTriView from '../views/ViTriView.vue'
+import TaiKhoanView from '../views/TaiKhoanView.vue'
+
+import ThongKeView from '../views/ThongKeView.vue'
+
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: HomeView
+        },
+        {
+            path: '/mayin',
+            name: 'mayin',
+            component: MayInView
+        },
+        {
+            path: '/vitri',
+            name: 'vitri',
+            component: ViTriView
+        },
+        {
+            path: '/taikhoan',
+            name: 'taikhoan',
+            component: TaiKhoanView
+        },
+        {
+            path: '/thongke',
+            name: 'thongke',
+            component: ThongKeView
+        }
+    ]
+})
+
+export default router
