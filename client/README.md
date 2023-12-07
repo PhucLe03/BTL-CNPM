@@ -1,29 +1,24 @@
-# dhbk-qlpt-client
+# BK-SMART PRINTING SYSTEM
 
-This template should help get you started developing with Vue 3 in Vite.
+bài tập lớn cnpm bk
 
-## Recommended IDE Setup
+# Chức năng
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Các chức năng nên có của admin và xuất file xlsx về chi tiết của cái thực hiện 
 
-## Customize configuration
+# Cái Đặt
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Sử dụng mysql workbench, copy file sql_cnpm vào và tạo db, sau đó và từng thư mục server và client run tuần tự các câu lệnh.
 
-## Project Setup
-
-```sh
-npm install
+Đối với server
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
+npm i
+npm run start
+```
+Đối với client
+```
+npm i
 npm run dev
 ```
 
-### Compile and Minify for Production
 
-```sh
-npm run build
-```
