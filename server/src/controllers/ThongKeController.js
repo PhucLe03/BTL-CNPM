@@ -1,66 +1,50 @@
+const XLSX = require('xlsx');
+const fs = require('fs');
+const db = require('../config/db');
+
 const TAILIEU = require('../models/TAILIEU');
 
-exports.Index = function(req, res){
-    TAILIEU.findAll(function(err, tailieus){
-        if(err){
-            res.send(err);
-        }else{
-            res.send(tailieus);
-        }
-    });
-}
+exports.Export = async function (req, res) {
+    TAILIEU.export(req.body.start, req.body.end, function (err, tailieus) {
 
-exports.FindByAttrByKeyword = function(req,res){
-    TAILIEU.findByAttrByKeyword(req.params.attr, req.params.keyword, function(err, tailieus){
-        if(err){
-            res.send(err);
-        }else{
-            res.send(tailieus);
-        }
-    })
-}
+        const datas = tailieus.map((item) => {
+            return {
+                idthuchien: item.IDTHUCHIEN,
+                sotrang: item.SOTRANG,
+                tenfile: item.TENFILE,
+                loaifile: item.LOAIFILE,
+                loaigiay: item.LOAIGIAY,
+                thoigianin: item.THOIGIANIN,
+                thoigiannhan: item.THOIGIANNHAN,
+                sobancopy: item.SOBANCOPY,
+                tongsotrang: item.TONGSOTRANG,
+                idtaikhoan: item.IDTAIKHOAN,
+                idmayin: item.IDMAYIN,
+            };
+        });
 
-exports.FindByAttrOrder = function(req,res){
-    TAILIEU.findByAttrOrder(req.params.attr, req.params.order, function(err, tailieus){
-        if(err){
-            res.send(err);
-        }else{
-            res.send(tailieus);
-        }
-    })
-}
+        // Create a worksheet from your data
+        const ws = XLSX.utils.json_to_sheet(datas);
 
-exports.Store = function(req, res){
-    let new_TAILIEU = new TAILIEU(req.body);
-    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
-        res.status(400).send({error:true, message:'Please provide all required field'});
-    }else{
-        TAILIEU.create(new_TAILIEU, function(err, TAILIEU){
-            if(err){
-                res.send(err);
-            }else{
-                res.json({error:false, message:'TAILIEU added successfully!', data:TAILIEU});
-            }
+        // Create a workbook and add the worksheet
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Data');
+
+        // Generate a temporary file path
+        const tempFilePath = './temp.xlsx';
+
+        // Write the XLSX file to the temp path
+        XLSX.writeFile(wb, tempFilePath);
+
+        // Send the file as a response
+        res.download(tempFilePath, 'exported-data.xlsx', () => {
+            // After the file is sent, delete the temporary file
+            fs.unlink(tempFilePath, (err) => {
+                if (err) {
+                    console.error('Error deleting temporary file:', err);
+                }
+            });
         });
     }
-}
-
-exports.Update = function(req, res){
-    TAILIEU.update(new TAILIEU(req.body), function(err, TAILIEU){
-        if(err){
-            res.send(err);
-        }else{
-            res.json({error:false, message:'TAILIEU successfully updated'});
-        }
-    });
-}
-
-exports.Delete = function(req, res){
-    TAILIEU.delete(req.params.maTAILIEU, function(err, TAILIEU){
-        if(err){
-            res.send(err);
-        }else{
-            res.json({error:false, message:'TAILIEU successfully deleted'});
-        }
-    });
+    )
 }

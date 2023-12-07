@@ -14,6 +14,18 @@ const TAILIEU = function (TAILIEU) {
     this.idmayin = TAILIEU.IDMAYIN;
 };
 
+TAILIEU.export = function (start, end, result) {
+    db.query('SELECT * FROM TAILIEU WHERE THOIGIANIN > ? AND THOIGIANIN < ?', [start, end], function (err, res) {
+        if (err) {
+            console.log('Error while fetching TAILIEU', err);
+            result(null, err);
+        } else {
+            console.log('TAILIEU fetched successfully');
+            result(null, res);
+        }
+    });
+}
+
 TAILIEU.findByAttrByKeyword = function (attr, keyword, result) {
     db.query('CALL FindByAttrKeyword(?,?,?)',
         ['TAILIEU', attr, keyword], function (err, res) {

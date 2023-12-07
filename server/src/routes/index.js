@@ -18,7 +18,7 @@ const route = (app) => {
     app.use('/tailieu', tailieuRouter)
     app.use('/vitri', vitriRouter)
     //----------------------------------
-    //app.use('/thongke', thongkeRouter)
+    app.use('/thongke', thongkeRouter)
     //----------------------------------
     app.use('/login', loginRouter)
     app.use('/logout', logoutRouter)
