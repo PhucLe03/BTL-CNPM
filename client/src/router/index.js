@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import MayInView from '../views/MayInView.vue'
 import ViTriView from '../views/ViTriView.vue'
 import TaiKhoanView from '../views/TaiKhoanView.vue'
+import FileCamView from '../views/CauHinhView.vue'
 
 import ThongKeView from '../views/ThongKeView.vue'
 
@@ -28,6 +29,11 @@ const router = createRouter({
             path: '/taikhoan',
             name: 'taikhoan',
             component: TaiKhoanView
+        },
+        {
+            path: '/filecam',
+            name: 'filecam',
+            component: FileCamView
         },
         {
             path: '/thongke',

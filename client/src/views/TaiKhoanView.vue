@@ -36,12 +36,12 @@ import Navigation from "../components/Navigation.vue";
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3">id taikhoan</th>
-                        <th scope="col" class="px-6 py-3">tendangnhap</th>
-                        <th scope="col" class="px-6 py-3">matkhau</th>
-                        <th scope="col" class="px-6 py-3">vaitro</th>
-                        <th scope="col" class="px-6 py-3">idsinhvien</th>
-                        <th scope="col" class="px-6 py-3">A4 con lai</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('IDTAIKHOAN')">id taikhoan</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('TENDANGNHAP')">tendangnhap</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('PWD')">matkhau</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('VAITRO')">vaitro</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('IDSINHVIEN')">idsinhvien</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('DA4PAGE')">A4 con lai</th>
                         <th scope="col" class="w-60"></th>
                     </tr>
                 </thead>
@@ -73,7 +73,8 @@ import Navigation from "../components/Navigation.vue";
                             <button @click="Update(item)" class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
                                 Chỉnh sửa
                             </button>
-                            <button @click="Delete(item.stt)" class="px-4 py-1 rounded bg-red-800 text-white font-bold">
+                            <button @click="Delete(item.IDTAIKHOAN)"
+                                class="px-4 py-1 rounded bg-red-800 text-white font-bold">
                                 Xóa
                             </button>
                         </td>
@@ -96,79 +97,27 @@ import Navigation from "../components/Navigation.vue";
                     <!-- Modal body -->
                     <div class="grid grid-cols-12 gap-3 p-6">
                         <div class="col-span-6">
-                            <Inputa label="STT" type="text" placeholder="số thứ tự" v-model="TaiKhoanModal.dataTaiKhoan.stt"
-                                read-only="true" />
+                            <Inputa label="ID" type="text" placeholder="" v-model="TaiKhoanModal.dataTaiKhoan.IDTAIKHOAN" />
                         </div>
                         <div class="col-span-6">
-                            <Inputa label="Mã học kì" type="text" placeholder="Nhập mã học kì"
-                                v-model="TaiKhoanModal.dataTaiKhoan.maHK" />
+                            <Inputa label="TENDANGNHAP" type="text" placeholder=""
+                                v-model="TaiKhoanModal.dataTaiKhoan.TENDANGNHAP" />
                         </div>
                         <div class="col-span-6">
-                            <Inputa label="Mã khoa" type="text" placeholder="Nhập mã khoa"
-                                v-model="TaiKhoanModal.dataTaiKhoan.maKhoa" />
+                            <Inputa label="PWD" type="text" placeholder="" v-model="TaiKhoanModal.dataTaiKhoan.PWD" />
                         </div>
                         <div class="col-span-6">
-                            <Inputa label="Phòng" type="text" placeholder="Nhập phòng"
-                                v-model="TaiKhoanModal.dataTaiKhoan.phong" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="Checkin Time" type="datetime" placeholder="ex: 2001/01/01 00:00:00"
-                                v-model="this.TaiKhoanModal.dataTaiKhoan.checkInTime" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="Checkout Time" type="datetime" placeholder="ex: 2001/01/01 00:00:00"
-                                v-model="this.TaiKhoanModal.dataTaiKhoan.checkOutTime" />
+                            <Inputa label="VAITRO" type="text" placeholder="" v-model="TaiKhoanModal.dataTaiKhoan.VAITRO" />
                         </div>
 
                         <div class="col-span-6">
-                            <div class="bg-500 flex items-start justify-between p-4 border-b rounded-t">
-                                <h3 class="text-xl font-semibold text-gray-900">
-                                    Đề Tài
-                                </h3>
-                            </div>
-                            <div>
-                                <div class="col-span-12 mt-2 text-center">
-                                    <button @click="addNewDeTai" type="button"
-                                        class="mr-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                        Thêm
-                                    </button>
-                                    <button @click="deleteNewDeTai" type="button"
-                                        class="ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                        Xoá
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-span-3 mt-2">
-                                <div v-for="index in TaiKhoanModal.dataTaiKhoan.detaiCount" :key="index">
-                                    <Inputa label="Mã Đề Tài" type="text" placeholder="Nhập mã đề tài"
-                                        v-model="TaiKhoanModal.dataTaiKhoan.newdetais[index - 1]" />
-                                </div>
-                            </div>
+                            <Inputa label="IDSINHVIEN" type="text" placeholder=""
+                                v-model="TaiKhoanModal.dataTaiKhoan.IDSINHVIEN" />
                         </div>
+
                         <div class="col-span-6">
-                            <div class="bg-500 flex items-start justify-between p-4 border-b rounded-t">
-                                <h3 class="text-xl font-semibold text-gray-900">
-                                    Giảng Viên
-                                </h3>
-                            </div>
-                            <div>
-                                <div class="col-span-12 mt-2 text-center">
-                                    <button @click="addNewGiangVien" type="button"
-                                        class="mr-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                        Thêm
-                                    </button>
-                                    <button @click="deleteNewGiangVien" type="button"
-                                        class="ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                        Xoá
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-span-3 mt-2">
-                                <div v-for="index in TaiKhoanModal.dataTaiKhoan.giangvienCount" :key="index">
-                                    <Inputa label="Mã Giảng Viên" type="text" placeholder="Nhập mã giảng viên"
-                                        v-model="TaiKhoanModal.dataTaiKhoan.newgiangviens[index - 1]" />
-                                </div>
-                            </div>
+                            <Inputa label="so trang con lai" type="text" placeholder=""
+                                v-model="TaiKhoanModal.dataTaiKhoan.DA4PAGE" />
                         </div>
                     </div>
 
@@ -194,21 +143,28 @@ export default {
     name: "TaiKhoans",
     data() {
         return {
+            sortKey: '',
+            sortOrders: {
+                IDTAIKHOAN: 1,
+                TENDANGNHAP: 1,
+                PWD: 1,
+                VAITRO: 1,
+                IDSINHVIEN: 1,
+                DA4PAGE: 1,
+            },
             keyword: "",
             fattr: "",
-            sattr: "",
-            order: "",
             TaiKhoans: [],
             TaiKhoanModal: {
                 txtTitle: "",
                 submitType: null,
                 dataTaiKhoan: {
-                    stt: null,
-                    maHK: null,
-                    maKhoa: null,
-                    phong: null,
-                    checkInTime: null,
-                    checkOutTime: null,
+                    IDTAIKHOAN: null,
+                    TENDANGNHAP: null,
+                    PWD: null,
+                    VAITRO: null,
+                    IDSINHVIEN: null,
+                    DA4PAGE: null,
                 },
             },
             modal: null,
@@ -219,148 +175,78 @@ export default {
         await this.getTaiKhoans();
     },
     methods: {
-        formatDate(value) {
-            return value ? moment(value).format("DD/MM/YYYY hh:mm") : null;
+        sortBy(key) {
+            this.sortKey = key;
+            this.TaiKhoans.sort((a, b) => {
+                const x = a[key];
+                const y = b[key];
+                const order = this.sortOrders[key] || 1;
+
+                // Modify the comparison logic based on your data types and sorting requirements
+                if (x < y) return order;
+                if (x > y) return -order;
+                return 0;
+            });
+            this.sortOrders[key] = this.sortOrders[key] * -1;
         },
         async getTaiKhoans() {
-            const res = await axios.get("/TaiKhoan");
-            this.TaiKhoans = await res.data[0].map((item) => {
-                item.checkInTime = moment(item.checkInTime).format("YYYY/MM/DD hh:mm");
-                item.checkOutTime = moment(item.checkOutTime).format("YYYY/MM/DD hh:mm");
+            const res = await axios.get("/taikhoan");
+            this.TaiKhoans = await res.data.map((item) => {
                 return item;
             });
         },
         Create() {
             this.modal.toggle();
             this.TaiKhoanModal = {
-                txtTitle: "Thêm mới hội đồng",
+                txtTitle: "Thêm mới tai khoan",
                 submitType: "create",
                 dataTaiKhoan: {
-                    maHK: null,
-                    maKhoa: null,
-                    phong: null,
-                    checkInTime: null,
-                    checkOutTime: null,
-                    giangvienCount: 1,
-                    newgiangviens: [],
-                    detaiCount: 1,
-                    newdetais: [],
+                    IDTAIKHOAN: null,
+                    TENDANGNHAP: null,
+                    PWD: null,
+                    VAITRO: null,
+                    IDSINHVIEN: null,
+                    DA4PAGE: null,
                 },
             };
         },
         async Update(TaiKhoanItem) {
-            const detais = await axios.get(`/TaiKhoan/findDeTai/${TaiKhoanItem.stt}`);
-            const giangviens = await axios.get(`/TaiKhoan/findGV/${TaiKhoanItem.stt}`);
             this.modal.toggle();
             this.TaiKhoanModal = {
                 txtTitle: "Chỉnh sửa hội đồng",
                 submitType: "update",
                 dataTaiKhoan: {
-                    stt: TaiKhoanItem.stt,
-                    maHK: TaiKhoanItem.maHK,
-                    maKhoa: TaiKhoanItem.maKhoa,
-                    phong: TaiKhoanItem.phong,
-                    checkInTime: TaiKhoanItem.checkInTime,
-                    checkOutTime: TaiKhoanItem.checkOutTime,
-                    giangvienCount: giangviens.data[0].length,
-                    newgiangviens: giangviens.data[0].map(item => item.maGV),
-                    detaiCount: detais.data[0].length,
-                    newdetais: detais.data[0].map(item => item.maDeTai),
-
+                    IDTAIKHOAN: TaiKhoanItem.IDTAIKHOAN,
+                    TENDANGNHAP: TaiKhoanItem.TENDANGNHAP,
+                    PWD: TaiKhoanItem.PWD,
+                    VAITRO: TaiKhoanItem.VAITRO,
+                    IDSINHVIEN: TaiKhoanItem.IDSINHVIEN,
+                    DA4PAGE: TaiKhoanItem.DA4PAGE,
                 },
             };
         },
         async Submit() {
             const submitType = this.TaiKhoanModal.submitType;
             const data = this.TaiKhoanModal.dataTaiKhoan;
-            data.checkInTime = moment(data.checkInTime).format("YYYY-MM-DD hh:mm:ss");
-            data.checkOutTime = moment(data.checkOutTime).format("YYYY-MM-DD hh:mm:ss");
 
-            const gvs = await axios.get(`/giangvien`);
-            const dts = await axios.get(`/detai`);
-
-            const magvs = gvs.data[0].map(item => item.maGV);
-            const madts = dts.data[0].map(item => item.maDeTai);
-
-            for (let i = 0; i < data.newgiangviens.length; i++) {
-                if (!magvs.includes(data.newgiangviens[i])) {
-                    alert("Mã giảng viên không tồn tại");
-                    return;
-                }
-            }
-
-            for (let i = 0; i < data.newdetais.length; i++) {
-                if (!madts.includes(data.newdetais[i])) {
-                    alert("Mã đề tài không tồn tại");
-                    return;
-                }
-            }
-
-            if (data.giangvienCount > 3) {
-                alert("So luong giang vien khong duoc vuot qua 3");
-                return;
-            }
-            //console.log(data.checkInTime);
             if (submitType === "create") {
-                await axios.post("TaiKhoan/store", data);
+                await axios.post("taikhoan/store", data);
             } else {
-                await axios.put(`TaiKhoan/update/${data.stt}`, data);
+                await axios.put(`taikhoan/update`, data);
             }
 
             await this.getTaiKhoans();
             this.modal.hide();
         },
-        async Delete(stt) {
-            await axios.delete(`TaiKhoan/delete/${stt}`);
+        async Delete(id) {
+            await axios.delete(`taikhoan/delete/${id}`);
             await this.getTaiKhoans();
         },
         async Find() {
             const res = await axios.get(`/TaiKhoan/find/${this.fattr}/${this.keyword}`);
             this.TaiKhoans = await res.data[0].map((item) => {
-                item.checkInTime = moment(item.checkInTime).format("DD/MM/YYYY hh:mm");
-                item.checkOutTime = moment(item.checkOutTime).format("DD/MM/YYYY hh:mm");
                 return item;
             });
-
-            console.log(res.data);
-        },
-        async Sort() {
-            const res = await axios.get(`/TaiKhoan/sort/${this.sattr}/${this.order}`);
-            this.TaiKhoans = await res.data[0].map((item) => {
-                item.checkInTime = moment(item.checkInTime).format("DD/MM/YYYY hh:mm");
-                item.checkOutTime = moment(item.checkOutTime).format("DD/MM/YYYY hh:mm");
-                return item;
-            });
-
-            console.log(res.data);
-        },
-        addNewGiangVien() {
-            if (this.TaiKhoanModal.dataTaiKhoan.giangvienCount == 3) {
-                alert("Hội đồng có tối đa 3 giảng viên")
-                return;
-            }
-            this.TaiKhoanModal.dataTaiKhoan.giangvienCount++;
-            this.TaiKhoanModal.dataTaiKhoan.newgiangviens.push("");
-        },
-        addNewDeTai() {
-            this.TaiKhoanModal.dataTaiKhoan.detaiCount++;
-            this.TaiKhoanModal.dataTaiKhoan.newdetais.push("");
-        },
-        deleteNewGiangVien() {
-            if (this.TaiKhoanModal.dataTaiKhoan.giangvienCount == 3) {
-                alert("Hội đồng có ít nhất 1 giảng viên")
-                return;
-            }
-            this.TaiKhoanModal.dataTaiKhoan.giangvienCount--;
-            this.TaiKhoanModal.dataTaiKhoan.newgiangviens.pop();
-        },
-        deleteNewDeTai() {
-            if (this.TaiKhoanModal.dataTaiKhoan.giangvienCount == 0) {
-                alert("Có ít nhất 1 đề tài trong hội đồng")
-                return;
-            }
-            this.TaiKhoanModal.dataTaiKhoan.detaiCount--;
-            this.TaiKhoanModal.dataTaiKhoan.newdetais.pop();
         },
     },
 };

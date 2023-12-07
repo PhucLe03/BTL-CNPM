@@ -1,13 +1,24 @@
 const db = require('../config/db')
 
 const FILECAM = function (FILECAM) {
-    this.idloaifile = FILECAM.idloaifile;
-    this.loaifile = FILECAM.loaifile;
+    this.idloaifile = FILECAM.IDLOAIFILE;
+    this.loaifile = FILECAM.LOAIFILE;
 
 
 };
 
-
+FILECAM.findByAttrByKeyword = function (attr, keyword, result) {
+    db.query('CALL FindByAttrKeyword(?,?,?)',
+        ['FILECAM', attr, keyword], function (err, res) {
+            if (err) {
+                console.log('Error while fetching FILECAM by attr and keyword', err);
+                result(null, err);
+            } else {
+                console.log('FILECAM fetched successfully');
+                result(null, res);
+            }
+        });
+}
 //---------------------------------------------
 FILECAM.findAll = function (result) {
     db.query('SELECT * FROM FILECAM', function (err, res) {
@@ -22,7 +33,7 @@ FILECAM.findAll = function (result) {
 }
 
 FILECAM.create = function (newFC, result) {
-    db.query('INSERT INTO FILECAM (IDLOAIFILE, LOAIFILE) VALUES (?,?))',
+    db.query('INSERT INTO FILECAM (IDLOAIFILE, LOAIFILE) VALUES (?,?)',
         [newFC.idloaifile, newFC.loaifile],
         function (err, res) {
             if (err) {
@@ -49,9 +60,8 @@ FILECAM.update = function (FC, result) {
         });
 }
 
-FILECAM.delete = function (idFILECAM, result) {
-    // cap nhat maDeTai null cho sinh vien
-    db.query('DELETE FROM FILECAM WHERE IDFILECAM = ?', idFILECAM, function (err, res) {
+FILECAM.delete = function (id, result) {
+    db.query('DELETE FROM FILECAM WHERE IDLOAIFILE = ?', id, function (err, res) {
         if (err) {
             console.log('Error while deleting the FILECAM', err);
             result(null, err);

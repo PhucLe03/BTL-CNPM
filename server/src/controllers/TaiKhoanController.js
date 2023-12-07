@@ -56,7 +56,7 @@ exports.Update = function(req, res){
 }
 
 exports.Delete = function(req, res){
-    TAIKHOAN.delete(req.params.maTAIKHOAN, function(err, TAIKHOAN){
+    TAIKHOAN.delete(req.params.id, function(err, TAIKHOAN){
         if(err){
             res.send(err);
         }else{

@@ -1,5 +1,16 @@
 const FILECAM = require('../models/FILECAM');
 
+exports.FindByAttrByKeyword = function(req,res){
+    FILECAM.findByAttrByKeyword(req.params.attr, req.params.keyword, function(err, filecams){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(filecams);
+        }
+    })
+}
+
+
 exports.Index = function(req, res){
     FILECAM.findAll(function(err, filecams){
         if(err){
@@ -36,7 +47,7 @@ exports.Update = function(req, res){
 }
 
 exports.Delete = function(req, res){
-    FILECAM.delete(req.params.maFILECAM, function(err, FILECAM){
+    FILECAM.delete(req.params.id, function(err, FILECAM){
         if(err){
             res.send(err);
         }else{
