@@ -5,9 +5,9 @@ const TaiLieuController = require('../controllers/TaiLieuController')
 router.get('/', TaiLieuController.Index)
 router.post('/store', TaiLieuController.Store)
 router.put('/update/', TaiLieuController.Update)
-router.delete('/delete/:idTaiLieu', TaiLieuController.Delete)
+router.delete('/delete/:id', TaiLieuController.Delete)
 //-----------------------------------------------------
-
+router.get('/find/:attr/:keyword', TaiLieuController.FindByAttrByKeyword)
 
 
 //-----------------------------------------------------

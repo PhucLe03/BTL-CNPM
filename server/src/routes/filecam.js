@@ -12,6 +12,6 @@ router.get('/find/:attr/:keyword', FileCamController.FindByAttrByKeyword)
 
 
 //-----------------------------------------------------
-
+router.get('/d4page/:page', FileCamController.D4PageUpdate)
 
 module.exports = router

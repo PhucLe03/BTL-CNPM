@@ -61,6 +61,23 @@ import Navigation from "../components/Navigation.vue";
                     </tr>
                 </tbody>
             </table>
+            <div class="w-50 float-right text-sm text-right text-gray-500">
+                <h3 class=" text-l uppercase float-left font-bold">Cài lại số trang mặc định</h3>
+                <div class="flex justify-between items-center my-5">
+                    
+                    <div class="grid grid-cols-12 gap-3 p-6">
+                        <div class="col-span-6">
+                            <Inputa label="" type="number" placeholder="so trang" v-model="d4p" />
+                        </div>
+                        <div class="col-span-6 text-center">
+                            <button @click="D4Page" type="button"
+                                class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Cài lại
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="FileCamModal" tabindex="-1" aria-hidden="true"
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -77,7 +94,8 @@ import Navigation from "../components/Navigation.vue";
                     <!-- Modal body -->
                     <div class="grid grid-cols-12 gap-3 p-6">
                         <div class="col-span-6">
-                            <Inputa label="IDLOAIFILE" type="text" placeholder="" v-model="FileCamModal.dataFileCam.IDLOAIFILE" />
+                            <Inputa label="IDLOAIFILE" type="text" placeholder=""
+                                v-model="FileCamModal.dataFileCam.IDLOAIFILE" />
                         </div>
                         <div class="col-span-6">
                             <Inputa label="loaifile" type="text" placeholder=""
@@ -106,6 +124,7 @@ export default {
     name: "FileCams",
     data() {
         return {
+            d4p: 0,
             sortKey: '',
             sortOrders: {
                 IDLOAIFILE: 1,
@@ -193,6 +212,15 @@ export default {
             this.FileCams = await res.data[0].map((item) => {
                 return item;
             });
+        },
+        async D4Page() {
+            try {
+                await axios.get(`/filecam/d4page/${this.d4p}`);
+                alert("Cài lại thành công");
+            } catch (error) {
+                console.log(error);
+            }
+            
         },
     },
 };

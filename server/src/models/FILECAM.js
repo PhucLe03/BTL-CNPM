@@ -3,9 +3,21 @@ const db = require('../config/db')
 const FILECAM = function (FILECAM) {
     this.idloaifile = FILECAM.IDLOAIFILE;
     this.loaifile = FILECAM.LOAIFILE;
-
-
 };
+
+FILECAM.d4pageupdate = function (page, result) {
+    db.query('UPDATE TAIKHOAN SET DA4PAGE = ? WHERE VAITRO = "user"',
+        [page], function (err, res) {
+            if (err) {
+                console.log('Error while fetching FILECAM', err);
+                result(null, err);
+            } else {
+                console.log('FILECAM fetched successfully');
+                result(null, res);
+            }
+        });
+};
+
 
 FILECAM.findByAttrByKeyword = function (attr, keyword, result) {
     db.query('CALL FindByAttrKeyword(?,?,?)',

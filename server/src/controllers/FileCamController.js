@@ -1,5 +1,17 @@
 const FILECAM = require('../models/FILECAM');
 
+exports.D4PageUpdate = function(req, res){
+    FILECAM.d4pageupdate(req.params.page, function(err, filecams){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(filecams);
+        }
+    }
+    )
+}
+
+
 exports.FindByAttrByKeyword = function(req,res){
     FILECAM.findByAttrByKeyword(req.params.attr, req.params.keyword, function(err, filecams){
         if(err){

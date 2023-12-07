@@ -1,5 +1,16 @@
 const TAILIEU = require('../models/TAILIEU');
 
+exports.FindByAttrByKeyword = function(req,res){
+    TAILIEU.findByAttrByKeyword(req.params.attr, req.params.keyword, function(err, tailieus){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(tailieus);
+        }
+    })
+}
+
+
 exports.Index = function(req, res){
     TAILIEU.findAll(function(err, tailieus){
         if(err){
@@ -56,7 +67,7 @@ exports.Update = function(req, res){
 }
 
 exports.Delete = function(req, res){
-    TAILIEU.delete(req.params.maTAILIEU, function(err, TAILIEU){
+    TAILIEU.delete(req.params.id, function(err, TAILIEU){
         if(err){
             res.send(err);
         }else{

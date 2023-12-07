@@ -1,19 +1,31 @@
 const db = require('../config/db')
 
 const TAILIEU = function (TAILIEU) {
-    this.idthuchien = TAILIEU.idthuchien;
-    this.sotrang = TAILIEU.sotrang;
-    this.tenfile = TAILIEU.tenfile;
-    this.loaifile = TAILIEU.loaifile;
-    this.loaigiay = TAILIEU.loaigiay;
-    this.thoigianin = TAILIEU.thoigianin;
-    this.thoigiannhan = TAILIEU.thoigiannhan;
-    this.sobancopy = TAILIEU.sobancopy;
-    this.tongsotrang = TAILIEU.tongsotrang;
-    this.idtaikhoan = TAILIEU.idtaikhoan;
-    this.idmayin = TAILIEU.idmayin;
+    this.idthuchien = TAILIEU.IDTHUCHIEN;
+    this.sotrang = TAILIEU.SOTRANG;
+    this.tenfile = TAILIEU.TENFILE;
+    this.loaifile = TAILIEU.LOAIFILE;
+    this.loaigiay = TAILIEU.LOAIGIAY;
+    this.thoigianin = TAILIEU.THOIGIANIN;
+    this.thoigiannhan = TAILIEU.THOIGIANNHAN;
+    this.sobancopy = TAILIEU.SOBANCOPY;
+    this.tongsotrang = TAILIEU.TONGSOTRANG;
+    this.idtaikhoan = TAILIEU.IDTAIKHOAN;
+    this.idmayin = TAILIEU.IDMAYIN;
 };
 
+TAILIEU.findByAttrByKeyword = function (attr, keyword, result) {
+    db.query('CALL FindByAttrKeyword(?,?,?)',
+        ['TAILIEU', attr, keyword], function (err, res) {
+            if (err) {
+                console.log('Error while fetching TAILIEU', err);
+                result(null, err);
+            } else {
+                console.log('TAILIEU fetched successfully');
+                result(null, res);
+            }
+        });
+}
 
 //---------------------------------------------
 TAILIEU.findAll = function (result) {
@@ -30,7 +42,7 @@ TAILIEU.findAll = function (result) {
 
 TAILIEU.create = function (newTL, result) {
     db.query('INSERT INTO TAILIEU (IDTHUCHIEN, TENFILE, SOTRANG, LOAIFILE, LOAIGIAY, THOIGIANIN, THOIGIANNHAN, SOBANCOPY, TONGSOTRANG, IDTAIKHOAN, IDMAYIN) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
-        [newTL.idthuchien, newTL.sotrang, newTL.tenfile, newTL.loaifile, newTL.loaigiay, newTL.thoigianin, newTL.thoigiannhan, newTL.sobancopy, newTL.tongsotrang, newTL.idtaikhoan, newTL.idmayin],
+        [newTL.idthuchien, newTL.tenfile, newTL.sotrang, newTL.loaifile, newTL.loaigiay, newTL.thoigianin, newTL.thoigiannhan, newTL.sobancopy, newTL.tongsotrang, newTL.idtaikhoan, newTL.idmayin],
         function (err, res) {
             if (err) {
                 console.log('Error while inserting data', err);
@@ -56,8 +68,8 @@ TAILIEU.update = function (TL, result) {
         });
 }
 
-TAILIEU.delete = function (idTAILIEU, result) {
-    db.query('DELETE FROM TAILIEU WHERE IDTAILIEU = ?', idTAILIEU, function (err, res) {
+TAILIEU.delete = function (id, result) {
+    db.query('DELETE FROM TAILIEU WHERE IDTHUCHIEN = ?', id, function (err, res) {
         if (err) {
             console.log('Error while deleting the TAILIEU', err);
             result(null, err);
