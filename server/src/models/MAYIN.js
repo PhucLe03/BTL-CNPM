@@ -42,7 +42,7 @@ MAYIN.findbyattrandkeyword = function (attr, keyword, result) {
 
 //---------------------------------------------
 MAYIN.findAll = function (result) {
-    db.query('SELECT * FROM MAYIN', function (err, res) {
+    db.query('SELECT * FROM MAYIN JOIN VITRI ON MAYIN.IDVITRI = VITRI.IDVITRI', function (err, res) {
         if (err) {
             console.log('Error while fetching MAYIN', err);
             result(null, err);

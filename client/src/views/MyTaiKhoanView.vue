@@ -8,21 +8,39 @@ import Navigation from "../components/UserNavigation.vue";
         <div>
             <Navigation />
         </div>
-        <div>
-            <div class="flex justify-between items-center my-5">
-                <div class="grid grid-cols-12 gap-3 p-6">
-                    <div class="col-span-4">
-                        <Inputa label="" type="text" placeholder="thuộc tính cần tìm kiếm" v-model="fattr" />
+        <div class="container mx-auto mt-8">
+            <div class="max-w-md mx-auto bg-white rounded overflow-hidden shadow-lg">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">Account Details</div>
+                    <div>
+                        <span class="text-gray-700">Username:</span> {{ this.account.TENDANGNHAP }}
                     </div>
-                    <div class="col-span-4">
-                        <Inputa label="" type="text" placeholder="từ khoá" v-model="keyword" />
+                    <div>
+                        <span class="text-gray-700">Password:</span> {{ this.account.PWD }}
                     </div>
-                    <div class="col-span-4 text-center">
-                        <button @click="Find" type="button"
-                            class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            Tìm kiếm
-                        </button>
+                    <div>
+                        <span class="text-gray-700">Role:</span> {{ this.account.VAITRO }}
                     </div>
+                    <div>
+                        <span class="text-gray-700">Student ID:</span> {{ this.account.IDSINHVIEN }}
+                    </div>
+                    <div>
+                        <span class="text-gray-700">Remaining A4:</span> {{ this.account.DA4PAGE }}
+                    </div>
+                    <!-- Add more details as needed -->
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between items-center my-5">
+            <div class="grid grid-cols-12 gap-3 p-6">
+                <div class="col-span-4">
+                    <Inputa label="" type="number" placeholder="Số Trang muốn mua" v-model="pages" />
+                </div>
+                <div class="col-span-4 text-center">
+                    <button @click="Buy" type="button"
+                        class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Buy
+                    </button>
                 </div>
             </div>
         </div>
@@ -30,53 +48,74 @@ import Navigation from "../components/UserNavigation.vue";
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('IDTAIKHOAN')">id taikhoan</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('TENDANGNHAP')">tendangnhap</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('PWD')">matkhau</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('VAITRO')">vaitro</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('IDSINHVIEN')">idsinhvien</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('DA4PAGE')">A4 con lai</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('IDTHUCHIEN')">IDTHUCHIEN</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('TENFILE')">TENFILE</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('SOTRANG')">SOTRANG</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('LOAIFILE')">LOAIFILE</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('LOAIGIAY')">LOAIGIAY</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('THOIGIANIN')">THOIGIANIN</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('THOIGIANNHAN')">THOIGIANNHAN</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('SOBANCOPY')">SOBANCOPIES</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('TONGSOTRANG')">TONGSOTRANG</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('IDMAYIN')">IDMAYIN</th>
                         <th scope="col" class="w-60"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in TaiKhoans" class="bg-white border-b">
+                    <tr v-for="item in tailieus" class="bg-white border-b">
                         <td class="px-6 py-4">
-                            <p class="font-bold">{{ item.IDTAIKHOAN }}</p>
+                            <p class="font-bold">{{ item.IDTHUCHIEN }}</p>
                         </td>
                         <td class="px-6 py-4">
-                            <p class="font-bold">{{ item.TENDANGNHAP }}</p>
+                            <p class="font-bold">{{ item.TENFILE }}</p>
                         </td>
                         <td class="px-6 py-4">
-                            {{ item.PWD }}
+                            {{ item.SOTRANG }}
                         </td>
                         <td class="px-6 py-4">
-                            <p>{{ item.VAITRO }}</p>
+                            <p>{{ item.LOAIFILE }}</p>
                         </td>
                         <td class="px-6 py-4">
                             <p>
-                                {{ item.IDSINHVIEN }}
+                                {{ item.LOAIGIAY }}
                             </p>
                         </td>
                         <td class="px-6 py-4">
                             <p>
-                                {{ item.DA4PAGE }}
+                                {{ item.THOIGIANIN }}
                             </p>
                         </td>
+                        <td class="px-6 py-4">
+                            <p>
+                                {{ item.THOIGIANNHAN }}
+                            </p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p>
+                                {{ item.SOBANCOPY }}
+                            </p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p>
+                                {{ item.TONGSOTRANG }}
+                            </p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p>
+                                {{ item.IDMAYIN }}
+                            </p>
+                        </td>
+
                         <td class="px-6 py-4 flex justify-center gap-2">
-                            <button @click="Update(item)" class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
-                                Chỉnh sửa
-                            </button>
-                            <button @click="Delete(item.IDTAIKHOAN)"
-                                class="px-4 py-1 rounded bg-red-800 text-white font-bold">
-                                Xóa
+                            <button @click="Detail(item)" class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
+                                Chi tiết
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div id="TaiKhoanModal" tabindex="-1" aria-hidden="true"
+        <div id="paymentModal" tabindex="-1" aria-hidden="true"
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-2xl max-h-full">
                 <!-- Modal content -->
@@ -84,42 +123,32 @@ import Navigation from "../components/UserNavigation.vue";
                     <!-- Modal header -->
                     <div class="bg-blue-500 flex items-start justify-between p-4 border-b rounded-t">
                         <h3 class="text-xl font-semibold text-gray-900">
-                            {{ TaiKhoanModal.txtTitle }}
+                            {{ paymentModal.txtTitle }}
                         </h3>
                     </div>
 
                     <!-- Modal body -->
                     <div class="grid grid-cols-12 gap-3 p-6">
                         <div class="col-span-6">
-                            <Inputa label="ID" type="text" placeholder="" v-model="TaiKhoanModal.dataTaiKhoan.IDTAIKHOAN" />
+                            <Inputa label="ID" type="number" placeholder="" v-model="paymentModal.dataPayment.pages" />
                         </div>
                         <div class="col-span-6">
-                            <Inputa label="TENDANGNHAP" type="text" placeholder=""
-                                v-model="TaiKhoanModal.dataTaiKhoan.TENDANGNHAP" />
+                            <button @click="Update" type="button"
+                                class="mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Cập nhật
+                            </button>
                         </div>
                         <div class="col-span-6">
-                            <Inputa label="PWD" type="text" placeholder="" v-model="TaiKhoanModal.dataTaiKhoan.PWD" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="VAITRO" type="text" placeholder="" v-model="TaiKhoanModal.dataTaiKhoan.VAITRO" />
-                        </div>
-
-                        <div class="col-span-6">
-                            <Inputa label="IDSINHVIEN" type="text" placeholder=""
-                                v-model="TaiKhoanModal.dataTaiKhoan.IDSINHVIEN" />
-                        </div>
-
-                        <div class="col-span-6">
-                            <Inputa label="so trang con lai" type="text" placeholder=""
-                                v-model="TaiKhoanModal.dataTaiKhoan.DA4PAGE" />
+                            <Inputa label="ID" :read-only="true" type="text" placeholder=""
+                                v-model="paymentModal.dataPayment.total" />
                         </div>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                        <button @click="Submit" type="button"
+                        <button @click="Checkout" type="button"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            Lưu
+                            Thanh toán
                         </button>
                     </div>
                 </div>
@@ -130,11 +159,12 @@ import Navigation from "../components/UserNavigation.vue";
 
 <script>
 import axios from "../fetch/axios";
-import { Modal } from "flowbite";
 import moment from "moment";
+import { Modal } from "flowbite";
+import * as Vue from 'vue';
 
 export default {
-    name: "TaiKhoans",
+    name: "MyTaiKhoanView",
     data() {
         return {
             sortKey: '',
@@ -146,32 +176,38 @@ export default {
                 IDSINHVIEN: 1,
                 DA4PAGE: 1,
             },
-            keyword: "",
-            fattr: "",
-            TaiKhoans: [],
-            TaiKhoanModal: {
-                txtTitle: "",
-                submitType: null,
-                dataTaiKhoan: {
-                    IDTAIKHOAN: null,
-                    TENDANGNHAP: null,
-                    PWD: null,
-                    VAITRO: null,
-                    IDSINHVIEN: null,
-                    DA4PAGE: null,
+            account: {
+                IDTAIKHOAN: "",
+                TENDANGNHAP: "",
+                PWD: "",
+                VAITRO: "",
+                IDSINHVIEN: "",
+                DA4PAGE: 0,
+                TAILIEUS: [],
+            },
+            tailieus: [],
+            paymentModal: {
+                txtTitle: "Thanh Toan",
+                submitType: "thanh toan",
+                dataPayment: {
+                    pages: 0,
+                    total: 0,
                 },
             },
             modal: null,
         };
     },
     async mounted() {
-        this.modal = new Modal(document.querySelector("#TaiKhoanModal"));
-        await this.getTaiKhoans();
+
+        await this.getAccount();
+        await this.getTaiLieusOnIdTaiKhoan();
+        this.modal = new Modal(document.querySelector("#paymentModal"));
+
     },
     methods: {
         sortBy(key) {
             this.sortKey = key;
-            this.TaiKhoans.sort((a, b) => {
+            this.tailieus.sort((a, b) => {
                 const x = a[key];
                 const y = b[key];
                 const order = this.sortOrders[key] || 1;
@@ -183,64 +219,47 @@ export default {
             });
             this.sortOrders[key] = this.sortOrders[key] * -1;
         },
-        async getTaiKhoans() {
-            const res = await axios.get(`/taikhoan/${this.$route.params.id}`);
-            this.TaiKhoans = await res.data.map((item) => {
-                return item;
+        async getAccount() {
+            const res = await axios.get(`/taikhoan/find/TK000002`);
+            this.account = res.data.map((item) => {
+                return {
+                    IDTAIKHOAN: item.IDTAIKHOAN,
+                    TENDANGNHAP: item.TENDANGNHAP,
+                    PWD: item.PWD,
+                    VAITRO: item.VAITRO,
+                    IDSINHVIEN: item.IDSINHVIEN,
+                    DA4PAGE: item.DA4PAGE,
+                }
+            })[0];
+        },
+        async getTaiLieusOnIdTaiKhoan() {
+            const res = await axios.get(`/tailieu/findbytk/${localStorage.getItem('id')}`);
+            this.tailieus = res.data.map((item) => {
+                return {
+                    IDTHUCHIEN: item.IDTHUCHIEN,
+                    TENFILE: item.TENFILE,
+                    SOTRANG: item.SOTRANG,
+                    LOAIFILE: item.LOAIFILE,
+                    LOAIGIAY: item.LOAIGIAY,
+                    THOIGIANIN: moment(item.THOIGIANIN, "YYYY/MM/DD hh:mm").format("DD/MM/YYYY hh:mm"),
+                    THOIGIANNHAN: moment(item.THOIGIANNHAN, "YYYY/MM/DD hh:mm").format("DD/MM/YYYY hh:mm"),
+                    SOBANCOPY: item.SOBANCOPY,
+                    TONGSOTRANG: item.TONGSOTRANG,
+                    IDTAIKHOAN: item.IDTAIKHOAN,
+                    IDMAYIN: item.IDMAYIN,
+                };
             });
         },
-        Create() {
+        async Buy() {
             this.modal.toggle();
-            this.TaiKhoanModal = {
-                txtTitle: "Thêm mới tai khoan",
-                submitType: "create",
-                dataTaiKhoan: {
-                    IDTAIKHOAN: null,
-                    TENDANGNHAP: null,
-                    PWD: null,
-                    VAITRO: null,
-                    IDSINHVIEN: null,
-                    DA4PAGE: null,
-                },
-            };
+            this.paymentModal.dataPayment.pages = this.pages;
+            this.paymentModal.dataPayment.total = this.paymentModal.dataPayment.pages * 500;
         },
-        async Update(TaiKhoanItem) {
-            this.modal.toggle();
-            this.TaiKhoanModal = {
-                txtTitle: "Chỉnh sửa hội đồng",
-                submitType: "update",
-                dataTaiKhoan: {
-                    IDTAIKHOAN: TaiKhoanItem.IDTAIKHOAN,
-                    TENDANGNHAP: TaiKhoanItem.TENDANGNHAP,
-                    PWD: TaiKhoanItem.PWD,
-                    VAITRO: TaiKhoanItem.VAITRO,
-                    IDSINHVIEN: TaiKhoanItem.IDSINHVIEN,
-                    DA4PAGE: TaiKhoanItem.DA4PAGE,
-                },
-            };
+        Update() {
+            this.paymentModal.dataPayment.total = this.paymentModal.dataPayment.pages * 500;
         },
-        async Submit() {
-            const submitType = this.TaiKhoanModal.submitType;
-            const data = this.TaiKhoanModal.dataTaiKhoan;
-
-            if (submitType === "create") {
-                await axios.post("taikhoan/store", data);
-            } else {
-                await axios.put(`taikhoan/update`, data);
-            }
-
-            await this.getTaiKhoans();
-            this.modal.hide();
-        },
-        async Delete(id) {
-            await axios.delete(`taikhoan/delete/${id}`);
-            await this.getTaiKhoans();
-        },
-        async Find() {
-            const res = await axios.get(`/TaiKhoan/find/${this.fattr}/${this.keyword}`);
-            this.TaiKhoans = await res.data[0].map((item) => {
-                return item;
-            });
+        async Checkout() {
+            //
         },
     },
 };

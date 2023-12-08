@@ -8,7 +8,7 @@ import Inputa from "../components/InputField.vue";
       <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 class="text-xl text-center leading-tight tracking-tight text-gray-700 md:text-2xl ">
-            Hệ thống quản lý luận văn tốt nghiệp
+            Hệ thống BK-Smart Printer
           </h1>
           <div class="">
             <img class="container mx-auto max-w-full h-auto scale-50" src="../assets/bku.png" alt="">

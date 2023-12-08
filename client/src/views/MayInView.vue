@@ -35,7 +35,9 @@ import Navigation from "../components/Navigation.vue";
                 <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3" @click="sortBy('IDMAYIN')">id mayin</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('IDVITRI')">id vitri</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('COSO')">Coso</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('TOA')">Toa</th>
+                        <th scope="col" class="px-6 py-3" @click="sortBy('PHONG')">Phong</th>
                         <th scope="col" class="px-6 py-3" @click="sortBy('TENMAYIN')">tenmayin</th>
                         <th scope="col" class="px-6 py-3" @click="sortBy('MODEL')">model</th>
                         <th scope="col" class="px-6 py-3" @click="sortBy('MOTA')">mota</th>
@@ -49,7 +51,13 @@ import Navigation from "../components/Navigation.vue";
                             <p class="font-bold">{{ item.IDMAYIN }}</p>
                         </td>
                         <td class="px-6 py-4">
-                            <p class="font-bold">{{ item.IDVITRI }}</p>
+                            <p class="font-bold">{{ item.COSO }}</p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p class="font-bold">{{ item.TOA }}</p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p class="font-bold">{{ item.PHONG }}</p>
                         </td>
                         <td class="px-6 py-4">
                             {{ item.TENMAYIN }}
@@ -205,6 +213,9 @@ export default {
                 MODEL: 1,
                 MOTA: 1,
                 TINHTRANG: 1,
+                COSO: 1,
+                TOA: 1,
+                PHONG: 1,
             },
             keyword: "",
             fattr: "",
@@ -219,6 +230,9 @@ export default {
                     MODEL: null,
                     MOTA: null,
                     TINHTRANG: null,
+                    COSO: null,
+                    TOA: null,
+                    PHONG: null,
                 },
             },
             ChiTietMayIn: {
@@ -246,6 +260,7 @@ export default {
         this.getMayIns();
         this.modal = new Modal(document.querySelector("#MayInModal"));
         this.chitiet = new Modal(document.querySelector("#ChiTietMayIn"));
+        console.log(this.MayIns)
     },
     methods: {
         sortBy(key) {
@@ -267,6 +282,7 @@ export default {
             this.MayIns = await res.data.map((item) => {
                 return item;
             });
+            console.log(this.MayIns)    
         },
         Create() {
             this.modal.toggle();

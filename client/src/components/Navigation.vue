@@ -25,7 +25,7 @@ export default {
     methods: {
         async logout() {
             const res = await axios.get("/logout");
-            this.$router.push("/login");
+            this.$router.push("/");
         },
     },
 };

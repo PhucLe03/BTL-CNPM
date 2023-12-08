@@ -10,6 +10,20 @@ const TAIKHOAN = function (TAIKHOAN) {
 };
 
 
+TAIKHOAN.findByID = function (id, result) {
+    db.query('SELECT * FROM TAIKHOAN WHERE IDTAIKHOAN = ?', id, function (err, res) {
+        if (err) {
+            console.log('Error while fetching TAIKHOAN', err);
+            result(null, err);
+        }
+        else {
+            console.log('TAIKHOAN fetched successfully');
+            result(null, res);
+        }
+    })
+}
+
+
 TAIKHOAN.findByAttrByKeyword = function (attr, keyword, result) {
     db.query('CALL FindByAttrKeyword(?,?,?)',
         ['TAIKHOAN', attr, keyword], function (err, res) {

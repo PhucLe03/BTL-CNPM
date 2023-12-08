@@ -8,6 +8,7 @@ router.put('/update/', TaiLieuController.Update)
 router.delete('/delete/:id', TaiLieuController.Delete)
 //-----------------------------------------------------
 router.get('/find/:attr/:keyword', TaiLieuController.FindByAttrByKeyword)
+router.get('/findbytk/:id', TaiLieuController.FindByTaiKhoan)
 
 
 //-----------------------------------------------------

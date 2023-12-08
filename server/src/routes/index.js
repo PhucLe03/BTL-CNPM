@@ -9,6 +9,8 @@ const thongkeRouter = require('./thongke')
 //----------------------------------
 const loginRouter = require('./login')
 const logoutRouter = require('./logout')
+//----------------------------------
+const checkoutRouter = require('./checkout')
 
 
 const route = (app) => {
@@ -17,6 +19,7 @@ const route = (app) => {
     app.use('/taikhoan', taikhoanRouter)
     app.use('/tailieu', tailieuRouter)
     app.use('/vitri', vitriRouter)
+    app.use('/checkout', checkoutRouter)
     //----------------------------------
     app.use('/thongke', thongkeRouter)
     //----------------------------------

@@ -1,5 +1,16 @@
 const TAIKHOAN = require('../models/TAIKHOAN');
 
+
+exports.FindByID = function(req,res){
+    TAIKHOAN.findByID(req.params.id, function(err, taikhoans){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(taikhoans);
+        }
+    })
+}
+
 exports.Index = function(req, res){
     TAIKHOAN.findAll(function(err, taikhoans){
         if(err){

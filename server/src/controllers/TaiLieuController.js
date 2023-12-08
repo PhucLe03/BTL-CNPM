@@ -1,5 +1,16 @@
 const TAILIEU = require('../models/TAILIEU');
 
+exports.FindByTaiKhoan = function(req,res){
+    //console.log(req.params.id)
+    TAILIEU.findByTaiKhoan(req.params.id, function(err, tailieus){
+        if(err){
+            res.send(err);
+        }else{
+            res.send(tailieus);
+        }
+    })
+}
+
 exports.FindByAttrByKeyword = function(req,res){
     TAILIEU.findByAttrByKeyword(req.params.attr, req.params.keyword, function(err, tailieus){
         if(err){

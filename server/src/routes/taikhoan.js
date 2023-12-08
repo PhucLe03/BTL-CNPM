@@ -8,6 +8,7 @@ router.put('/update/', TaiKhoanController.Update)
 router.delete('/delete/:id', TaiKhoanController.Delete)
 //-----------------------------------------------------
 router.get('/find/:attr/:keyword', TaiKhoanController.FindByAttrByKeyword)
+router.get('/find/:id', TaiKhoanController.FindByID)
 
 
 //-----------------------------------------------------
