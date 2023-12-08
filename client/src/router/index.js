@@ -45,6 +45,16 @@ const router = createRouter({
             path: '/thongke',
             name: 'thongke',
             component: ThongKeView
+        },
+        {
+            path: '/inan',
+            name: 'inan',
+            component: () => import('../views/InAnView.vue')
+        },
+        {
+            path: '/mytaikhoan',
+            name: 'mytaikhoan',
+            component: () => import('../views/MyTaiKhoanView.vue')
         }
     ]
 })

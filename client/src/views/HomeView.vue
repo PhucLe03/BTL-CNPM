@@ -45,7 +45,10 @@ export default {
         password: this.password,
       });
       if (res.data.message === "success") {
-        this.$router.push("/mayin");
+        localStorage.setItem("id", res.data.data.IDTAIKHOAN);
+        res.data.data.VAITRO === "admin"
+          ? this.$router.push("/mayin")
+          : this.$router.push("/inan");
       } else {
         alert("Sai tài khoản hoặc mật khẩu");
       }
