@@ -236,7 +236,7 @@ import Header from "../components/header.vue";
                                     v-model="TaiLieuModal.dataTaiLieu.SOBANCOPY" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa label="tongsotrang" read-only="true" type="number" placeholder=""
+                                <Inputa label="tongsotrang" type="number" placeholder=""
                                     v-model="TaiLieuModal.dataTaiLieu.TONGSOTRANG" />
                             </div>
                             <div class="col-span-6">

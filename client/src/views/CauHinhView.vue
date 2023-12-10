@@ -146,7 +146,7 @@ import Header from "../components/header.vue";
                         <!-- Modal body -->
                         <div class="grid grid-cols-12 gap-3 p-6">
                             <div class="col-span-6">
-                                <Inputa label="IDLOAIFILE" :read-only="true" type="text" placeholder=""
+                                <Inputa label="IDLOAIFILE" type="text" placeholder=""
                                     v-model="FileCamModal.dataFileCam.IDLOAIFILE" />
                             </div>
                             <div class="col-span-6">

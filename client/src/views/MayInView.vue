@@ -212,7 +212,7 @@ import Header from "../components/header.vue";
                         <div class="grid grid-cols-12 gap-3 p-6">
                             <div class="col-span-12">
                                 <Inputa label="Printer ID" type="text" placeholder="MAYxxx"
-                                    v-model="MayInModal.dataMayIn.IDMAYIN" :read-only="true" />
+                                    v-model="MayInModal.dataMayIn.IDMAYIN" />
                             </div>
                             <div class="col-span-6">
                                 <Inputa label="Location ID" type="text" placeholder="VTxxx"

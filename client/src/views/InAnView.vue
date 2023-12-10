@@ -124,7 +124,7 @@ import Header from "../components/header.vue";
                                                 <div class="col-span-6">
                                                     <Inputa label="tinhtrang" type="text" placeholder="" v-model="InAnModal.dataInAn
                                                         .IDTAIKHOAN
-                                                        " :read-only="true" />
+                                                        " />
                                                 </div>
                                             </div>
 

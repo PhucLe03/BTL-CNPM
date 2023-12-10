@@ -185,7 +185,7 @@ import Header from "../components/header.vue";
                         <!-- Modal body -->
                         <div class="grid grid-cols-12 gap-3 p-6">
                             <div class="col-span-6">
-                                <Inputa label="Account ID" type="text" :read-only="true" placeholder="TKxxxxxx"
+                                <Inputa label="Account ID" type="text" placeholder="TKxxxxxx"
                                     v-model="TaiKhoanModal.dataTaiKhoan.IDTAIKHOAN" />
                             </div>
                             <div class="col-span-6">
