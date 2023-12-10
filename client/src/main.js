@@ -1,10 +1,11 @@
 import { createApp } from 'vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import './assets/phuc.css'
-import './style.css'
 import App from './App.vue'
+import 'flowbite'
+import './assets/tailwind.css'
+
 import router from './router'
 
-const app = createApp(App);
-app.use(router);
+const app = createApp(App)
+app.use(router)
+
 app.mount('#app')

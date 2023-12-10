@@ -1,22 +1,26 @@
 {
-  "name": "bk.e-commerce-api",
+  "name": "server",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "nodemon src/main.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
-  "author": "SaiGonSoftware",
-  "keywords": [],
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "axios": "^1.6.0",
+    "circular-json": "^0.5.9",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "fs": "^0.0.1-security",
     "mysql": "^2.18.1",
-    "mysql2": "^3.6.1",
-    "nodemon": "^3.0.1"
+    "mysql2": "^3.6.5",
+    "nodemon": "^3.0.2",
+    "xlsx": "^0.18.5"
   }
 }

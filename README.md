@@ -17,14 +17,44 @@ Hệ thống cung cấp các chức năng quản lý các tác vụ in, theo dõ
 
 ## Cài đặt
 
-+ Clone repository này
-+ Truy vấn vào thư mục của project, client cho phần giao diện, server cho phần backend
++ Clone hoặc tải file từ repository này
+```c
+git clone https://github.com/PhucLe03/BTL-CNPM
+```
++ Truy vấn vào thư mục của project
+```c
+cd BTL-CNPM
+```
++ Khởi tạo cở sở dữ liệu 
+    + Tạo database từ các câu lệnh trong file [`sql_cnpm 2.sql`](./sql_cnpm%202.sql)
+    + Thay đổi `user` và `password` trong [`config`](./server/src/config/db/credentials.json)
 + Sử dụng npm để cài đặt các dependencies
-+ Khởi tạo cở sở dữ liệu
+    + Đối với client
+    ```c
+    cd client
+    npm i
+    ```
+    + Đối với server
+    ```c
+    cd server
+    npm i
+    ```
 + Khởi động ứng dụng
+    + Đối với client
+    ```c
+    npm run dev
+    ```
+    + Đối với server
+    ```c
+    npm run start
+    ```
 
 ## Người đóng góp
 
 [Lê Hoàng Phúc](https://github.com/PhucLe03)
 
 [Nguyễn Trang Sỹ Lâm](https://github.com/silam741852963)
+
+[Lê Nguyễn Phước Lộc](https://github.com/i-am-page)
+
+[Nguyễn Duy](https://github.com/duynguyen38)
