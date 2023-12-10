@@ -27,7 +27,7 @@ cd BTL-CNPM
 ```
 + Khởi tạo cở sở dữ liệu 
     + Tạo database từ các câu lệnh trong file [`sql_cnpm 2.sql`](./sql_cnpm%202.sql)
-    + Thay đổi `user` và `password` trong [`config`](./server/src/config/db/credentials.json)
+    + Thay đổi `user` và `password` trong [`config`](./server/src/config/db/credentials.json) theo như username và password của mình
 + Sử dụng npm để cài đặt các dependencies
     + Đối với client
     ```c
