@@ -1,183 +1,261 @@
 <script setup>
 import Inputa from "../components/InputField.vue";
 import Navigation from "../components/Navigation.vue";
+import Header from "../components/header.vue";
 </script>
 
 <template>
-    <div>
+    <div class="flex h-screen overflow-hidden">
         <div>
             <Navigation />
         </div>
-        <div class="flex justify-between items-center text-center my-5">
-            <h1 class="ml-10 text-xl text-center uppercase font-bold">Danh sách Tai Lieu</h1>
-            <button class="mr-10 px-5 p-1.5 rounded bg-blue-700 font-bold text-white" type="button" @click="Create">
-                Thêm mới
-            </button>
-        </div>
-        <div class="flex justify-between items-center my-5">
-            <div class="grid grid-cols-12 gap-3 p-6">
-                <div class="col-span-4">
-                    <Inputa label="" type="text" placeholder="thuộc tính cần tìm kiếm" v-model="fattr" />
-                </div>
-                <div class="col-span-4">
-                    <Inputa label="" type="text" placeholder="từ khoá" v-model="keyword" />
-                </div>
-                <div class="col-span-4 text-center">
-                    <button @click="Find" type="button"
-                        class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Tìm kiếm
-                    </button>
-                </div>
+
+        <div class="flex flex-col flex-1 relative overflow-x-hidden overflow-y-auto">
+            <div>
+                <Header />
             </div>
-        </div>
-        <div class="relative overflow-x-auto mt-5">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('IDTHUCHIEN')">IDTHUCHIEN</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('TENFILE')">TENFILE</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('SOTRANG')">SOTRANG</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('LOAIFILE')">LOAIFILE</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('LOAIGIAY')">LOAIGIAY</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('THOIGIANIN')">THOIGIANIN</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('THOIGIANNHAN')">THOIGIANNHAN</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('SOBANCOPY')">SOBANCOPIES</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('TONGSOTRANG')">TONGSOTRANG</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('IDTAIKHOAN')">IDTAIKHOAN</th>
-                        <th scope="col" class="px-6 py-3" @click="sortBy('IDMAYIN')">IDMAYIN</th>
-                        <th scope="col" class="w-60"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="item in TaiLieus" class="bg-white border-b">
-                        <td class="px-6 py-4">
-                            <p class="font-bold">{{ item.IDTHUCHIEN }}</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="font-bold">{{ item.TENFILE }}</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ item.SOTRANG }}
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>{{ item.LOAIFILE }}</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>
-                                {{ item.LOAIGIAY }}
-                            </p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>
-                                {{ item.THOIGIANIN }}
-                            </p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>
-                                {{ item.THOIGIANNHAN }}
-                            </p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>
-                                {{ item.SOBANCOPY }}
-                            </p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>
-                                {{ item.TONGSOTRANG }}
-                            </p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>
-                                {{ item.IDTAIKHOAN }}
-                            </p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p>
-                                {{ item.IDMAYIN }}
-                            </p>
-                        </td>
 
-                        <td class="px-6 py-4 flex justify-center gap-2">
-                            <button @click="Detail(item)" class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
-                                Chi tiết
-                            </button>
-                            <button @click="Update(item)" class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
-                                Chỉnh sửa
-                            </button>
-                            <button @click="Delete(item.IDTHUCHIEN)"
-                                class="px-4 py-1 rounded bg-red-800 text-white font-bold">
-                                Xóa
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="TaiLieuModal" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative w-full max-w-2xl max-h-full">
-                <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow">
-                    <!-- Modal header -->
-                    <div class="bg-blue-500 flex items-start justify-between p-4 border-b rounded-t">
-                        <h3 class="text-xl font-semibold text-gray-900">
-                            {{ TaiLieuModal.txtTitle }}
-                        </h3>
+            <main>
+                <div class="max-w-screen-2xl mx-auto p-4 md:p-6 2xl:p-10 bg-gray-100">
+                    <!-- ------ -->
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+                        <h1 class="text-2xl uppercase font-bold">
+                            Document Management
+                        </h1>
+
+                        <div>
+                            <nav>
+                                <ol class="flex items-center gap-2">
+                                    <li><a href="index.html">Dashboard /</a></li>
+                                    <li class="text-primary">Document Management</li>
+                                </ol>
+                            </nav>
+                        </div>
+
                     </div>
+                    <!-- ------------------------------------------------- -->
 
-                    <!-- Modal body -->
-                    <div class="grid grid-cols-12 gap-3 p-6">
-                        <div class="col-span-12">
-                            <Inputa label="id" type="text" placeholder="" v-model="TaiLieuModal.dataTaiLieu.IDTHUCHIEN" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="ten file" type="text" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.TENFILE" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="so trang" type="number" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.SOTRANG" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="loai file" type="text" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.LOAIFILE" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="loai giay" type="text" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.LOAIGIAY" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="thoigianin" type="datetime-local" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.THOIGIANIN" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="thoigiannhan" type="datetime-local" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.THOIGIANNHAN" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="sobancopy" type="number" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.SOBANCOPY" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="tongsotrang" read-only="true" type="number" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.TONGSOTRANG" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="idtaikhoan" type="text" placeholder=""
-                                v-model="TaiLieuModal.dataTaiLieu.IDTAIKHOAN" />
-                        </div>
-                        <div class="col-span-6">
-                            <Inputa label="idmayin" type="text" placeholder="" v-model="TaiLieuModal.dataTaiLieu.IDMAYIN" />
+
+                    <div class="flex flex-col gap-10">
+                        <!-- Printer List -->
+                        <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow sm:px-7.5 xl:pb-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="mb-6 text-xl font-bold text-black uppercase">
+                                    Document List
+                                </h4>
+                                <button class="px-5 p-1.5 rounded bg-green-700 font-bold text-white mt-0" type="button"
+                                    @click="Create">
+                                    Add New Document
+                                </button>
+                            </div>
+
+                            <div class="flex justify-between items-center my-5">
+                                <div class="grid grid-cols-12 gap-3 p-6">
+                                    <div class="col-span-4">
+                                        <select id="status" v-model=fattr
+                                            class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 sm:text-sm">
+                                            <option value="IDTHUCHIEN">
+                                                Transaction ID
+                                            </option>
+                                            <option value="SOTRANG">
+                                                Page
+                                            </option>
+                                            <option value="TENFILE">
+                                                Document Name
+                                            </option>
+                                            <option value="LOAIFILE">
+                                                Document Type
+                                            </option>
+                                            <option value="LOAIGIAY">
+                                                Paper Type
+                                            </option>
+                                            <option value="SOBANCOPY">
+                                                Number of Copies
+                                            </option>
+                                            <option value="TONGSOTRANG">
+                                                Total Pages
+                                            </option>
+                                            <option value="IDTAIKHOAN">
+                                                Account ID
+                                            </option>
+                                            <option value="IDMAYIN">
+                                                Printer ID
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-span-4">
+                                        <Inputa label="" type="text" placeholder="Keyword" v-model="keyword" />
+                                    </div>
+                                    <div class="col-span-3 text-center">
+                                        <button @click="Find" type="button"
+                                            class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative overflow-x-auto mt-5">
+                                <table class="w-full text-sm text-left text-gray-500">
+                                    <thead
+                                        class="text-center font-medium text-sm text-gray-700 uppercase bg-gray-100 xsm:text-base">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDTHUCHIEN')">IDTHUCHIEN</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('TENFILE')">TENFILE</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('SOTRANG')">SOTRANG</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('LOAIFILE')">LOAIFILE</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('LOAIGIAY')">LOAIGIAY</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('THOIGIANIN')">THOIGIANIN</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('THOIGIANNHAN')">THOIGIANNHAN
+                                            </th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('SOBANCOPY')">SOBANCOPIES</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('TONGSOTRANG')">TONGSOTRANG
+                                            </th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDTAIKHOAN')">IDTAIKHOAN</th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDMAYIN')">IDMAYIN</th>
+                                            <th scope="col" class="w-60"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in TaiLieus" class="bg-white border-b">
+                                            <td class="px-6 py-4">
+                                                <p class="font-bold">{{ item.IDTHUCHIEN }}</p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p class="font-bold">{{ item.TENFILE }}</p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ item.SOTRANG }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>{{ item.LOAIFILE }}</p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>
+                                                    {{ item.LOAIGIAY }}
+                                                </p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>
+                                                    {{ item.THOIGIANIN }}
+                                                </p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>
+                                                    {{ item.THOIGIANNHAN }}
+                                                </p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>
+                                                    {{ item.SOBANCOPY }}
+                                                </p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>
+                                                    {{ item.TONGSOTRANG }}
+                                                </p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>
+                                                    {{ item.IDTAIKHOAN }}
+                                                </p>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <p>
+                                                    {{ item.IDMAYIN }}
+                                                </p>
+                                            </td>
+
+                                            <td class="px-6 py-4 flex justify-center gap-2">
+                                                <button @click="Detail(item)"
+                                                    class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
+                                                    Chi tiết
+                                                </button>
+                                                <button @click="Update(item)"
+                                                    class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
+                                                    Chỉnh sửa
+                                                </button>
+                                                <button @click="Delete(item.IDTHUCHIEN)"
+                                                    class="px-4 py-1 rounded bg-red-800 text-white font-bold">
+                                                    Xóa
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </main>
 
-                    <!-- Modal footer -->
-                    <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-                        <button @click="Submit" type="button"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            Lưu
-                        </button>
+            <div id="TaiLieuModal" tabindex="-1" aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow">
+                        <!-- Modal header -->
+                        <div class="bg-blue-500 flex items-start justify-between p-4 border-b rounded-t">
+                            <h3 class="text-xl font-semibold text-gray-900">
+                                {{ TaiLieuModal.txtTitle }}
+                            </h3>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="grid grid-cols-12 gap-3 p-6">
+                            <div class="col-span-12">
+                                <Inputa label="id" type="text" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.IDTHUCHIEN" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="ten file" type="text" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.TENFILE" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="so trang" type="number" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.SOTRANG" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="loai file" type="text" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.LOAIFILE" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="loai giay" type="text" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.LOAIGIAY" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="thoigianin" type="datetime-local" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.THOIGIANIN" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="thoigiannhan" type="datetime-local" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.THOIGIANNHAN" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="sobancopy" type="number" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.SOBANCOPY" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="tongsotrang" read-only="true" type="number" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.TONGSOTRANG" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="idtaikhoan" type="text" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.IDTAIKHOAN" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="idmayin" type="text" placeholder=""
+                                    v-model="TaiLieuModal.dataTaiLieu.IDMAYIN" />
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
+                            <button @click="Submit" type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Lưu
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

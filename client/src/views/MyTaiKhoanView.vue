@@ -1,6 +1,6 @@
 <script setup>
 import Inputa from "../components/InputField.vue";
-import Navigation from "../components/Navigation.vue";
+import Navigation from "../components/UserNavigation.vue";
 </script>
 
 <template>
@@ -9,21 +9,15 @@ import Navigation from "../components/Navigation.vue";
             <Navigation />
         </div>
 
-        <div
-            class="flex flex-col flex-1 relative overflow-x-hidden overflow-y-auto"
-        >
+        <div class="flex flex-col flex-1 relative overflow-x-hidden overflow-y-auto">
             <div>
                 <Header />
             </div>
 
             <main>
-                <div
-                    class="max-w-screen-2xl mx-auto p-4 md:p-6 2xl:p-10 bg-gray-100"
-                >
+                <div class="max-w-screen-2xl mx-auto p-4 md:p-6 2xl:p-10 bg-gray-100">
                     <!-- ------ -->
-                    <div
-                        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6"
-                    >
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                         <h1 class="text-2xl uppercase font-bold">
                             Smart Printing Service
                         </h1>
@@ -45,9 +39,7 @@ import Navigation from "../components/Navigation.vue";
 
                     <div class="flex flex-col gap-10">
                         <!-- Printer List -->
-                        <div
-                            class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow sm:px-7.5 xl:pb-1"
-                        >
+                        <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow sm:px-7.5 xl:pb-1">
                             <div class="flex justify-between items-center">
                                 <h4 class="mb-6 text-xl font-bold text-black">
                                     Your Account
@@ -55,78 +47,44 @@ import Navigation from "../components/Navigation.vue";
                             </div>
 
                             <div class="relative overflow-x-auto mt-5">
-                                <table
-                                    class="w-full text-sm text-left text-gray-500"
-                                >
+                                <table class="w-full text-sm text-left text-gray-500">
                                     <thead
-                                        class="text-center font-medium text-sm text-gray-700 uppercase bg-gray-100 xsm:text-base"
-                                    >
+                                        class="text-center font-medium text-sm text-gray-700 uppercase bg-gray-100 xsm:text-base">
                                         <tr>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('IDTAIKHOAN')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDTAIKHOAN')">
                                                 Account ID
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('TENDANGNHAP')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('TENDANGNHAP')">
                                                 Username
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('PWD')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('PWD')">
                                                 Password
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('VAITRO')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('VAITRO')">
                                                 Role
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('IDSINHVIEN')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDSINHVIEN')">
                                                 Student ID
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('DA4PAGE')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('DA4PAGE')">
                                                 A4 paper
                                             </th>
                                             <th scope="col" class="w-60"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
-                                            v-for="item in TaiKhoans"
-                                            class="bg-white border-b"
-                                        >
+                                        <tr v-for="item in TaiKhoans" class="bg-white border-b">
                                             <td class="text-center">
                                                 <p class="font-bold">
                                                     {{ item.IDTAIKHOAN }}
                                                 </p>
                                             </td>
                                             <td class="text-center">
-                                                <img
-                                                    src="../images/user.svg"
-                                                    alt="Brand"
-                                                    style="
+                                                <img src="../images/user.svg" alt="Brand" style="
                                                         vertical-align: middle;
                                                         display: inline-block;
                                                         width: 40px;
-                                                    "
-                                                />
+                                                    " />
                                                 <p class="font-bold">
                                                     {{ item.TENDANGNHAP }}
                                                 </p>
@@ -147,21 +105,14 @@ import Navigation from "../components/Navigation.vue";
                                                     {{ item.DA4PAGE }}
                                                 </p>
                                             </td>
-                                            <td
-                                                class="px-6 py-4 flex justify-center gap-2"
-                                            >
-                                                <button
-                                                    @click="Update(item)"
-                                                    class="px-4 py-1 rounded bg-yellow-600 text-white font-bold"
-                                                >
+                                            <td class="px-6 py-4 flex justify-center gap-2">
+                                                <button @click="Update(item)"
+                                                    class="px-4 py-1 rounded bg-yellow-600 text-white font-bold">
                                                     Edit
                                                 </button>
-                                                <button
-                                                    @click="
-                                                        Delete(item.IDMAYIN)
-                                                    "
-                                                    class="px-4 py-1 rounded bg-red-800 text-white font-bold"
-                                                >
+                                                <button @click="
+                                                    Delete(item.IDMAYIN)
+                                                    " class="px-4 py-1 rounded bg-red-800 text-white font-bold">
                                                     Delete
                                                 </button>
                                             </td>

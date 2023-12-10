@@ -10,21 +10,15 @@ import Header from "../components/header.vue";
             <Navigation />
         </div>
 
-        <div
-            class="flex flex-col flex-1 relative overflow-x-hidden overflow-y-auto"
-        >
+        <div class="flex flex-col flex-1 relative overflow-x-hidden overflow-y-auto">
             <div>
                 <Header />
             </div>
 
             <main>
-                <div
-                    class="max-w-screen-2xl mx-auto p-4 md:p-6 2xl:p-10 bg-gray-100"
-                >
+                <div class="max-w-screen-2xl mx-auto p-4 md:p-6 2xl:p-10 bg-gray-100">
                     <!-- ------ -->
-                    <div
-                        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6"
-                    >
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                         <h1 class="text-2xl uppercase font-bold">
                             Printer Management
                         </h1>
@@ -44,60 +38,48 @@ import Header from "../components/header.vue";
 
                     <div class="flex flex-col gap-10">
                         <!-- Printer List -->
-                        <div
-                            class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow sm:px-7.5 xl:pb-1"
-                        >
-                        <div class="flex justify-between items-center">
-                            <h4 class="mb-6 text-xl font-bold text-black uppercase">
-                                Printer List
-                            </h4>
-                        
-                            <button class="px-5 p-1.5 rounded bg-green-700 font-bold text-white mt-0" type="button" @click="Create">
-                                Add New Printer
-                            </button>
-                        </div>
+                        <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow sm:px-7.5 xl:pb-1">
+                            <div class="flex justify-between items-center">
+                                <h4 class="mb-6 text-xl font-bold text-black uppercase">
+                                    Printer List
+                                </h4>
+                                <button class="px-5 p-1.5 rounded bg-green-700 font-bold text-white mt-0" type="button"
+                                    @click="Create">
+                                    Add New Printer
+                                </button>
+                            </div>
 
                             <div class="flex justify-between items-center my-5">
                                 <div class="grid grid-cols-12 gap-3 p-6">
                                     <div class="col-span-4">
-                                        <select
-                                            id="status"
-                                            class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 sm:text-sm"
-                                        >
-                                            <option value="not_available">
+                                        <select id="status" v-model=fattr
+                                            class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 sm:text-sm">
+                                            <option value="IDMAYIN">
                                                 Printer ID
                                             </option>
-                                            <option value="available">
+                                            <option value="IDVITRI">
                                                 Location ID
                                             </option>
-                                            <option value="available">
+                                            <option value="TENMAYIN">
                                                 Printer name
                                             </option>
-                                            <option value="available">
+                                            <option value="MODEL">
                                                 Model
                                             </option>
-                                            <option value="available">
+                                            <option value="MOTO">
                                                 Description
                                             </option>
-                                            <option value="available">
+                                            <option value="TINHTRANG">
                                                 Status
                                             </option>
                                         </select>
                                     </div>
                                     <div class="col-span-4">
-                                        <Inputa
-                                            label=""
-                                            type="text"
-                                            placeholder="Keyword"
-                                            v-model="keyword"
-                                        />
+                                        <Inputa label="" type="text" placeholder="Keyword" v-model="keyword" />
                                     </div>
                                     <div class="col-span-3 text-center">
-                                        <button
-                                            @click="Find"
-                                            type="button"
-                                            class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                        >
+                                        <button @click="Find" type="button"
+                                            class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                             Search
                                         </button>
                                     </div>
@@ -105,63 +87,42 @@ import Header from "../components/header.vue";
                             </div>
 
                             <div class="relative overflow-x-auto mt-5">
-                                <table
-                                    class="w-full text-sm text-left text-gray-500"
-                                >
+                                <table class="w-full text-sm text-left text-gray-500">
                                     <thead
-                                        class="text-center font-medium text-sm text-gray-700 uppercase bg-gray-100 xsm:text-base"
-                                    >
+                                        class="text-center font-medium text-sm text-gray-700 uppercase bg-gray-100 xsm:text-base">
                                         <tr>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('IDMAYIN')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDMAYIN')">
                                                 Printer ID
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('IDVITRI')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDVITRI')">
                                                 Location ID
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('TENMAYIN')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('COSO')">
+                                                Campus
+                                            </th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('TOA')">
+                                                Building
+                                            </th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('PHONG')">
+                                                Room
+                                            </th>
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('TENMAYIN')">
                                                 Printer Name
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('MODEL')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('MODEL')">
                                                 model
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('MOTA')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('MOTA')">
                                                 Description
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('TINHTRANG')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('TINHTRANG')">
                                                 Status
                                             </th>
                                             <th scope="col" class="w-60"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
-                                            v-for="item in MayIns"
-                                            class="bg-white border-b"
-                                        >
+                                        <tr v-for="item in MayIns" class="bg-white border-b">
                                             <td class="text-center">
                                                 <p class="font-bold">
                                                     {{ item.IDMAYIN }}
@@ -172,18 +133,27 @@ import Header from "../components/header.vue";
                                                     {{ item.IDVITRI }}
                                                 </p>
                                             </td>
-                                            <td
-                                                class="text-center flex-shrink-0"
-                                            >
-                                                <img
-                                                    src="../images/printer (2).svg"
-                                                    alt="Brand"
-                                                    style="
+                                            <td class="text-center">
+                                                <p class="font-bold">
+                                                    {{ item.COSO }}
+                                                </p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="font-bold">
+                                                    {{ item.TOA }}
+                                                </p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="font-bold">
+                                                    {{ item.PHONG }}
+                                                </p>
+                                            </td>
+                                            <td class="text-center flex-shrink-0">
+                                                <img src="../images/printer (2).svg" alt="Brand" style="
                                                         vertical-align: middle;
                                                         display: inline-block;
                                                         width: 40px;
-                                                    "
-                                                />
+                                                    " />
                                                 {{ item.TENMAYIN }}
                                             </td>
                                             <td class="text-center">
@@ -200,27 +170,18 @@ import Header from "../components/header.vue";
                                                 </p>
                                             </td>
 
-                                            <td
-                                                class="px-6 py-4 flex justify-center gap-2"
-                                            >
-                                                <button
-                                                    @click="Detail(item)"
-                                                    class="px-4 py-1 rounded bg-cyan-700 text-white font-bold"
-                                                >
+                                            <td class="px-6 py-4 flex justify-center gap-2">
+                                                <button @click="Detail(item)"
+                                                    class="px-4 py-1 rounded bg-cyan-700 text-white font-bold">
                                                     Detail
                                                 </button>
-                                                <button
-                                                    @click="Update(item)"
-                                                    class="px-4 py-1 rounded bg-yellow-600 text-white font-bold"
-                                                >
+                                                <button @click="Update(item)"
+                                                    class="px-4 py-1 rounded bg-yellow-600 text-white font-bold">
                                                     Edit
                                                 </button>
-                                                <button
-                                                    @click="
-                                                        Delete(item.IDMAYIN)
-                                                    "
-                                                    class="px-4 py-1 rounded bg-red-800 text-white font-bold"
-                                                >
+                                                <button @click="
+                                                    Delete(item.IDMAYIN)
+                                                    " class="px-4 py-1 rounded bg-red-800 text-white font-bold">
                                                     Delete
                                                 </button>
                                             </td>
@@ -233,75 +194,47 @@ import Header from "../components/header.vue";
                 </div>
             </main>
 
-            <div
-                id="MayInModal"
-                tabindex="-1"
-                aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-            >
+            <div id="MayInModal" tabindex="-1" aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow">
                         <!-- Modal header -->
                         <div class="bg-blue-700 flex items-center justify-start p-4 border-b rounded-t">
-                        
+
                             <h3 class="text-xl font-semibold text-white">
                                 {{ MayInModal.txtTitle }}
                             </h3>
                         </div>
-                        
+
 
                         <!-- Modal body -->
                         <div class="grid grid-cols-12 gap-3 p-6">
                             <div class="col-span-12">
-                                <Inputa
-                                    label="Printer ID"
-                                    type="text"
-                                    placeholder="MAYxxx"
-                                    v-model="MayInModal.dataMayIn.IDMAYIN"
-                                />
+                                <Inputa label="Printer ID" type="text" placeholder="MAYxxx"
+                                    v-model="MayInModal.dataMayIn.IDMAYIN" :read-only="true" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Location ID"
-                                    type="text"
-                                    placeholder="VTxxx"
-                                    v-model="MayInModal.dataMayIn.IDVITRI"
-                                />
+                                <Inputa label="Location ID" type="text" placeholder="VTxxx"
+                                    v-model="MayInModal.dataMayIn.IDVITRI" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Printer Name"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="MayInModal.dataMayIn.TENMAYIN"
-                                />
+                                <Inputa label="Printer Name" type="text" placeholder=""
+                                    v-model="MayInModal.dataMayIn.TENMAYIN" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Model"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="MayInModal.dataMayIn.MODEL"
-                                />
+                                <Inputa label="Model" type="text" placeholder="" v-model="MayInModal.dataMayIn.MODEL" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Description"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="MayInModal.dataMayIn.MOTA"
-                                />
+                                <Inputa label="Description" type="text" placeholder=""
+                                    v-model="MayInModal.dataMayIn.MOTA" />
                             </div>
                             <div class="col-span-6">
                                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                                <select
-                                    id="status"
-                                    v-model="MayInModal.dataMayIn.TINHTRANG"
-                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 sm:text-sm"
-                                >
-                                    <option value="not_available">Not Available</option>
-                                    <option value="available">Available</option>
+                                <select id="status" v-model="MayInModal.dataMayIn.TINHTRANG"
+                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 sm:text-sm">
+                                    <option value="Not Available">Not Available</option>
+                                    <option value="Available">Available</option>
                                 </select>
                             </div>
 
@@ -309,38 +242,26 @@ import Header from "../components/header.vue";
 
                         <!-- Modal footer -->
                         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
-                            <button
-                                @click="Close"
-                                type="button"
-                                class="text-gray-700 hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                            >
+                            <button @click="Close" type="button"
+                                class="text-gray-700 hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                 Close
                             </button>
-                        
-                            <button
-                                @click="Submit"
-                                type="button"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                            >
+
+                            <button @click="Submit" type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                 Save
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div
-                id="ChiTietMayIn"
-                tabindex="-1"
-                aria-hidden="true"
-                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-            >
+            <div id="ChiTietMayIn" tabindex="-1" aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow">
                         <!-- Modal header -->
-                        <div
-                            class="bg-blue-700 flex items-start justify-between p-4 border-b rounded-t"
-                        >
+                        <div class="bg-blue-700 flex items-start justify-between p-4 border-b rounded-t">
                             <h3 class="text-xl font-semibold text-white">
                                 {{ ChiTietMayIn.txtTitle }}
                             </h3>
@@ -349,99 +270,51 @@ import Header from "../components/header.vue";
                         <!-- Modal body -->
                         <div class="grid grid-cols-12 gap-3 p-6">
                             <div class="col-span-12">
-                                <Inputa
-                                    label="Printer ID"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.IDMAYIN"
-                                />
+                                <Inputa label="Printer ID" type="text" placeholder=""
+                                    v-model="ChiTietMayIn.dataMayIn.IDMAYIN" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Location ID"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.IDVITRI"
-                                />
+                                <Inputa label="Location ID" type="text" placeholder=""
+                                    v-model="ChiTietMayIn.dataMayIn.IDVITRI" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Printer Name"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.TENMAYIN"
-                                />
+                                <Inputa label="Printer Name" type="text" placeholder=""
+                                    v-model="ChiTietMayIn.dataMayIn.TENMAYIN" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Model"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.MODEL"
-                                />
+                                <Inputa label="Model" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.MODEL" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Description"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.MOTA"
-                                />
+                                <Inputa label="Description" type="text" placeholder=""
+                                    v-model="ChiTietMayIn.dataMayIn.MOTA" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Status"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.TINHTRANG"
-                                />
+                                <Inputa label="Status" type="text" placeholder=""
+                                    v-model="ChiTietMayIn.dataMayIn.TINHTRANG" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Image"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.HINHANH"
-                                />
+                                <Inputa label="Image" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.HINHANH" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Facility"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.COSO"
-                                />
+                                <Inputa label="Facility" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.COSO" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Bulding"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.TOA"
-                                />
+                                <Inputa label="Bulding" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.TOA" />
                             </div>
                             <div class="col-span-6">
-                                <Inputa
-                                    label="Room"
-                                    type="text"
-                                    placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.PHONG"
-                                />
+                                <Inputa label="Room" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.PHONG" />
                             </div>
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
 
-                        
-                            <button
-                                @click="Close"
-                                type="button"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                            >
+
+                            <button @click="Close" type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                 Close
                             </button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -466,6 +339,9 @@ export default {
                 MODEL: 1,
                 MOTA: 1,
                 TINHTRANG: 1,
+                COSO: 1,
+                TOA: 1,
+                PHONG: 1,
             },
             keyword: "",
             fattr: "",
@@ -480,6 +356,10 @@ export default {
                     MODEL: null,
                     MOTA: null,
                     TINHTRANG: null,
+                    COSO: null,
+                    TOA: null,
+                    PHONG: null,
+
                 },
             },
             ChiTietMayIn: {

@@ -10,21 +10,15 @@ import Header from "../components/header.vue";
             <Navigation />
         </div>
 
-        <div
-            class="flex flex-col flex-1 relative overflow-x-hidden overflow-y-auto"
-        >
+        <div class="flex flex-col flex-1 relative overflow-x-hidden overflow-y-auto">
             <div>
                 <Header />
             </div>
 
             <main>
-                <div
-                    class="max-w-screen-2xl mx-auto p-4 md:p-6 2xl:p-10 bg-gray-100"
-                >
+                <div class="max-w-screen-2xl mx-auto p-4 md:p-6 2xl:p-10 bg-gray-100">
                     <!-- ------ -->
-                    <div
-                        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6"
-                    >
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                         <h1 class="text-2xl uppercase font-bold">
                             User Management
                         </h1>
@@ -46,21 +40,14 @@ import Header from "../components/header.vue";
 
                     <div class="flex flex-col gap-10">
                         <!-- Printer List -->
-                        <div
-                            class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow sm:px-7.5 xl:pb-1"
-                        >
+                        <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow sm:px-7.5 xl:pb-1">
                             <div class="flex justify-between items-center">
-                                <h4
-                                    class="mb-6 text-xl font-bold text-black uppercase"
-                                >
+                                <h4 class="mb-6 text-xl font-bold text-black uppercase">
                                     Account List
                                 </h4>
 
-                                <button
-                                    class="px-5 p-1.5 rounded bg-green-700 font-bold text-white mt-0"
-                                    type="button"
-                                    @click="Create"
-                                >
+                                <button class="px-5 p-1.5 rounded bg-green-700 font-bold text-white mt-0" type="button"
+                                    @click="Create">
                                     Add New Account
                                 </button>
                             </div>
@@ -68,44 +55,34 @@ import Header from "../components/header.vue";
                             <div class="flex justify-between items-center my-5">
                                 <div class="grid grid-cols-12 gap-3 p-6">
                                     <div class="col-span-4">
-                                        <select
-                                            id="status"
-                                            class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 sm:text-sm"
-                                        >
-                                            <option value="not_available">
+                                        <select id="status" v-model=fattr
+                                            class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 sm:text-sm">
+                                            <option value="IDTAIKHOAN">
                                                 Account ID
                                             </option>
-                                            <option value="available">
+                                            <option value="TENDANGNHAP">
                                                 Username
                                             </option>
-                                            <option value="available">
+                                            <option value="PSW">
                                                 Password
                                             </option>
-                                            <option value="available">
+                                            <option value="VAITRO">
                                                 Role
                                             </option>
-                                            <option value="available">
+                                            <option value="IDSINHVIEN">
                                                 Student ID
                                             </option>
-                                            <option value="available">
+                                            <option value="DA4PAGE">
                                                 A4 Paper
                                             </option>
                                         </select>
                                     </div>
                                     <div class="col-span-4">
-                                        <Inputa
-                                            label=""
-                                            type="text"
-                                            placeholder="Keyword"
-                                            v-model="keyword"
-                                        />
+                                        <Inputa label="" type="text" placeholder="Keyword" v-model="keyword" />
                                     </div>
                                     <div class="col-span-3 text-center">
-                                        <button
-                                            @click="Find"
-                                            type="button"
-                                            class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                        >
+                                        <button @click="Find" type="button"
+                                            class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                             Search
                                         </button>
                                     </div>
@@ -113,78 +90,44 @@ import Header from "../components/header.vue";
                             </div>
 
                             <div class="relative overflow-x-auto mt-5">
-                                <table
-                                    class="w-full text-sm text-left text-gray-500"
-                                >
+                                <table class="w-full text-sm text-left text-gray-500">
                                     <thead
-                                        class="text-center font-medium text-sm text-gray-700 uppercase bg-gray-100 xsm:text-base"
-                                    >
+                                        class="text-center font-medium text-sm text-gray-700 uppercase bg-gray-100 xsm:text-base">
                                         <tr>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('IDTAIKHOAN')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDTAIKHOAN')">
                                                 Account ID
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('TENDANGNHAP')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('TENDANGNHAP')">
                                                 Username
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('PWD')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('PWD')">
                                                 Password
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('VAITRO')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('VAITRO')">
                                                 Role
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('IDSINHVIEN')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('IDSINHVIEN')">
                                                 Student ID
                                             </th>
-                                            <th
-                                                scope="col"
-                                                class="px-6 py-3"
-                                                @click="sortBy('DA4PAGE')"
-                                            >
+                                            <th scope="col" class="px-6 py-3" @click="sortBy('DA4PAGE')">
                                                 A4 paper
                                             </th>
                                             <th scope="col" class="w-60"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
-                                            v-for="item in TaiKhoans"
-                                            class="bg-white border-b"
-                                        >
+                                        <tr v-for="item in TaiKhoans" class="bg-white border-b">
                                             <td class="text-center">
                                                 <p class="font-bold">
                                                     {{ item.IDTAIKHOAN }}
                                                 </p>
                                             </td>
                                             <td class="text-center">
-                                                <img
-                                                    src="../images/user.svg"
-                                                    alt="Brand"
-                                                    style="
+                                                <img src="../images/user.svg" alt="Brand" style="
                                                         vertical-align: middle;
                                                         display: inline-block;
                                                         width: 40px;
-                                                    "
-                                                />
+                                                    " />
                                                 <p class="font-bold">
                                                     {{ item.TENDANGNHAP }}
                                                 </p>
@@ -205,21 +148,14 @@ import Header from "../components/header.vue";
                                                     {{ item.DA4PAGE }}
                                                 </p>
                                             </td>
-                                            <td
-                                                class="px-6 py-4 flex justify-center gap-2"
-                                            >
-                                                <button
-                                                    @click="Update(item)"
-                                                    class="px-4 py-1 rounded bg-yellow-600 text-white font-bold"
-                                                >
+                                            <td class="px-6 py-4 flex justify-center gap-2">
+                                                <button @click="Update(item)"
+                                                    class="px-4 py-1 rounded bg-yellow-600 text-white font-bold">
                                                     Edit
                                                 </button>
-                                                <button
-                                                    @click="
-                                                        Delete(item.IDMAYIN)
-                                                    "
-                                                    class="px-4 py-1 rounded bg-red-800 text-white font-bold"
-                                                >
+                                                <button @click="
+                                                    Delete(item.IDMAYIN)
+                                                    " class="px-4 py-1 rounded bg-red-800 text-white font-bold">
                                                     Delete
                                                 </button>
                                             </td>
@@ -231,104 +167,67 @@ import Header from "../components/header.vue";
                     </div>
                 </div>
             </main>
+            
         </div>
     </div>
+    <div id="TaiKhoanModal" tabindex="-1" aria-hidden="true"
+                class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow">
+                        <!-- Modal header -->
+                        <div class="bg-blue-700 flex items-start justify-between p-4 border-b rounded-t">
+                            <h3 class="text-xl font-semibold text-white">
+                                {{ TaiKhoanModal.txtTitle }}
+                            </h3>
+                        </div>
 
-    <div
-        id="TaiKhoanModal"
-        tabindex="-1"
-        aria-hidden="true"
-        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-    >
-        <div class="relative w-full max-w-2xl max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow">
-                <!-- Modal header -->
-                <div
-                    class="bg-blue-700 flex items-start justify-between p-4 border-b rounded-t"
-                >
-                    <h3 class="text-xl font-semibold text-white">
-                        {{ TaiKhoanModal.txtTitle }}
-                    </h3>
-                </div>
+                        <!-- Modal body -->
+                        <div class="grid grid-cols-12 gap-3 p-6">
+                            <div class="col-span-6">
+                                <Inputa label="Account ID" type="text" :read-only="true" placeholder="TKxxxxxx"
+                                    v-model="TaiKhoanModal.dataTaiKhoan.IDTAIKHOAN" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="Username" type="text" placeholder=""
+                                    v-model="TaiKhoanModal.dataTaiKhoan.TENDANGNHAP" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="Password" type="text" placeholder=""
+                                    v-model="TaiKhoanModal.dataTaiKhoan.PWD" />
+                            </div>
+                            <div class="col-span-6">
+                                <Inputa label="Role" type="text" placeholder=""
+                                    v-model="TaiKhoanModal.dataTaiKhoan.VAITRO" />
+                            </div>
 
-                <!-- Modal body -->
-                <div class="grid grid-cols-12 gap-3 p-6">
-                    <div class="col-span-6">
-                        <Inputa
-                            label="Account ID"
-                            type="text"
-                            placeholder="TKxxxxxx"
-                            v-model="TaiKhoanModal.dataTaiKhoan.IDTAIKHOAN"
-                        />
-                    </div>
-                    <div class="col-span-6">
-                        <Inputa
-                            label="Username"
-                            type="text"
-                            placeholder=""
-                            v-model="TaiKhoanModal.dataTaiKhoan.TENDANGNHAP"
-                        />
-                    </div>
-                    <div class="col-span-6">
-                        <Inputa
-                            label="Password"
-                            type="text"
-                            placeholder=""
-                            v-model="TaiKhoanModal.dataTaiKhoan.PWD"
-                        />
-                    </div>
-                    <div class="col-span-6">
-                        <Inputa
-                            label="Role"
-                            type="text"
-                            placeholder=""
-                            v-model="TaiKhoanModal.dataTaiKhoan.VAITRO"
-                        />
-                    </div>
+                            <div class="col-span-6">
+                                <Inputa label="Student ID" type="text" placeholder=""
+                                    v-model="TaiKhoanModal.dataTaiKhoan.IDSINHVIEN" />
+                            </div>
 
-                    <div class="col-span-6">
-                        <Inputa
-                            label="Student ID"
-                            type="text"
-                            placeholder=""
-                            v-model="TaiKhoanModal.dataTaiKhoan.IDSINHVIEN"
-                        />
+                            <div class="col-span-6">
+                                <Inputa label="A4 Papers" type="text" placeholder=""
+                                    v-model="TaiKhoanModal.dataTaiKhoan.DA4PAGE" />
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
+                            <button @click="Close" type="button"
+                                class="text-gray-700 hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Close
+                            </button>
+
+                            <button @click="Submit" type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Save
+                            </button>
+                        </div>
                     </div>
-
-                    <div class="col-span-6">
-                        <Inputa
-                            label="A4 Papers"
-                            type="text"
-                            placeholder=""
-                            v-model="TaiKhoanModal.dataTaiKhoan.DA4PAGE"
-                        />
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div
-                    class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b"
-                >
-                    <button
-                        @click="Close"
-                        type="button"
-                        class="text-gray-700 hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                        Close
-                    </button>
-
-                    <button
-                        @click="Submit"
-                        type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                        Save
-                    </button>
                 </div>
             </div>
-        </div>
-    </div>
+            <div></div>
 </template>
 
 <script>
