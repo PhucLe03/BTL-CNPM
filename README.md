@@ -59,10 +59,12 @@ cd BTL-CNPM
 
 ## Người đóng góp
 
-[Lê Hoàng Phúc](https://github.com/PhucLe03)
+Chủ biên: [Lê Hoàng Phúc](https://github.com/PhucLe03)
 
-[Nguyễn Trang Sỹ Lâm](https://github.com/silam741852963)
+Biên tập viên kiêm Tester: [Nguyễn Trang Sỹ Lâm](https://github.com/silam741852963)
 
-[Lê Nguyễn Phước Lộc](https://github.com/i-am-page)
+Back-end: [Lê Nguyễn Phước Lộc](https://github.com/i-am-page)
 
-[Nguyễn Duy](https://github.com/duynguyen38)
+Front-end: [Nguyễn Duy](https://github.com/duynguyen38), [Lê Nguyễn Phước Lộc](https://github.com/i-am-page)
+
+Viết báo cáo: [Phạm Thanh Tùng](https://github.com/pthanhtung412), [Đặng Thanh Huy](https://github.com/ThanhHuy1006), [Nguyễn Hoàng Khôi Nguyên](https://github.com/DracNguyen)
