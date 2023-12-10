@@ -14,6 +14,14 @@ Hệ thống cung cấp các chức năng quản lý các tác vụ in, theo dõ
 + Thêm máy in vào hệ thống
 + Chỉnh sửa thông tin và trạng thái các máy in trên hệ thống
 + Xóa máy in khỏi hệ thống
++ Chức năng thêm xoá sửa xem đối với các tài khoản
++ Chức năng cấu hình số trang cho toàn bộ tài khoản user
++ Chức năng thêm xoá sửa các vị trí đặt các máy in trong khuôn viên nhà trường
++ Chức năng xem thêm xoá sửa các giao dịch in ấn của toàn bộ hệ thống
++ Chức năng thống kê và xuất file xlsx cho các giao dịch in ấn trong khoảng thời gian
++ Chức năng đăng nhập đối với admin và user
++ Sơ bộ về chức năng in cho user (chưa hoàn thiện)
+
 
 ## Cài đặt
 
