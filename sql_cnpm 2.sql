@@ -54,9 +54,6 @@ ADD CONSTRAINT FK_IDVITRI_MAYIN_VITRI foreign key (IDVITRI) references VITRI(IDV
 -- Loc
 DELIMITER //
 
-
-DELIMITER //
-
 CREATE PROCEDURE SortByAttrOrder(
 	IN p_tablename VARCHAR(255),
     IN p_attribute VARCHAR(255),
@@ -76,6 +73,8 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DELIMITER //
 
 CREATE PROCEDURE FindByAttrKeyword(
 	IN p_tablename VARCHAR(255),
