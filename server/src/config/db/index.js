@@ -1,10 +1,12 @@
 const mysql = require("mysql2");
 
+const data = require('./credentials.json');
+
 const db = mysql.createConnection(
     {
         host: "localhost",
-        user: "root",
-        password: "L@c02032003",
+        user: data.user || "root",
+        password: data.password || "",
         database: "QUANLYINAN",
     },
     function (err) {
