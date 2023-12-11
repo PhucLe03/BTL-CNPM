@@ -255,69 +255,43 @@ import Header from "../components/header.vue";
                     </div>
                 </div>
             </div>
-            <div id="ChiTietMayIn" tabindex="-1" aria-hidden="true"
+            <div id="deleteModal" tabindex="-1" aria-hidden="true"
                 class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-2xl max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow">
                         <!-- Modal header -->
-                        <div class="bg-blue-700 flex items-start justify-between p-4 border-b rounded-t">
+                        <div class="bg-blue-700 flex items-center justify-start p-4 border-b rounded-t">
+
                             <h3 class="text-xl font-semibold text-white">
-                                {{ ChiTietMayIn.txtTitle }}
+                                Printer Management
                             </h3>
                         </div>
+
 
                         <!-- Modal body -->
                         <div class="grid grid-cols-12 gap-3 p-6">
                             <div class="col-span-12">
-                                <Inputa label="Printer ID" type="text" placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.IDMAYIN" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Location ID" type="text" placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.IDVITRI" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Printer Name" type="text" placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.TENMAYIN" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Model" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.MODEL" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Description" type="text" placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.MOTA" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Status" type="text" placeholder=""
-                                    v-model="ChiTietMayIn.dataMayIn.TINHTRANG" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Image" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.HINHANH" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Facility" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.COSO" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Bulding" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.TOA" />
-                            </div>
-                            <div class="col-span-6">
-                                <Inputa label="Room" type="text" placeholder="" v-model="ChiTietMayIn.dataMayIn.PHONG" />
+                                <a class="text-center">Bạn xác nhận xoá?</a>
                             </div>
                         </div>
+
                         <!-- Modal footer -->
                         <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b">
-
-
-                            <button @click="Close" type="button"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            <button @click="DClose" type="button"
+                                class="text-gray-700 hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                 Close
                             </button>
-                        </div>
 
+                            <button @click="Confirm" type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Confirm
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -362,31 +336,22 @@ export default {
 
                 },
             },
-            ChiTietMayIn: {
-                txtTitle: "Printer Detail",
+            deleteModal: {
+                txtTitle: "",
                 submitType: null,
                 dataMayIn: {
                     IDMAYIN: null,
-                    IDVITRI: null,
-                    TENMAYIN: null,
-                    MODEL: null,
-                    MOTA: null,
-                    TINHTRANG: null,
-                    HINHANH: null,
-                    COSO: null,
-                    TOA: null,
-                    PHONG: null,
                 },
             },
+            dModal: null,
             modal: null,
-            chitiet: null,
         };
     },
 
     mounted() {
         this.getMayIns();
         this.modal = new Modal(document.querySelector("#MayInModal"));
-        this.chitiet = new Modal(document.querySelector("#ChiTietMayIn"));
+        this.dModal = new Modal(document.querySelector("#deleteModal"))
     },
     methods: {
         sortBy(key) {
@@ -440,25 +405,6 @@ export default {
                 },
             };
         },
-        async Detail(MayInItem) {
-            this.chitiet.toggle();
-            const vitri = await axios.get(`/vitri/find/${MayInItem.IDVITRI}`);
-            this.ChiTietMayIn = {
-                txtTitle: "Chi tiết Máy In",
-                dataMayIn: {
-                    IDMAYIN: MayInItem.IDMAYIN,
-                    IDVITRI: MayInItem.IDVITRI,
-                    TENMAYIN: MayInItem.TENMAYIN,
-                    MODEL: MayInItem.MODEL,
-                    MOTA: MayInItem.MOTA,
-                    TINHTRANG: MayInItem.TINHTRANG,
-                    HINHANH: MayInItem.HINHANH,
-                    COSO: vitri.data.COSO,
-                    TOA: vitri.data.TOA,
-                    PHONG: vitri.data.PHONG,
-                },
-            };
-        },
         async Submit() {
             const submitType = this.MayInModal.submitType;
             const data = this.MayInModal.dataMayIn;
@@ -473,8 +419,15 @@ export default {
             this.modal.hide();
         },
         async Delete(id) {
-            await axios.delete(`mayin/delete/${id}`);
-            await this.getMayIns();
+            this.dModal.toggle();
+            this.deleteModal = {
+                dataMayIn: {
+                    IDMAYIN: id,
+                },
+            };
+            
+            // await axios.delete(`mayin/delete/${id}`);
+            // await this.getMayIns();
         },
         async Find() {
             const res = await axios.get(
@@ -483,6 +436,15 @@ export default {
             this.MayIns = await res.data[0].map((item) => {
                 return item;
             });
+        },
+        async DClose() {
+            this.dModal.hide();
+        },
+        async Confirm() {
+            const id = this.deleteModal.dataMayIn.IDMAYIN;
+            await axios.delete(`mayin/delete/${id}`);
+            await this.getMayIns();
+            this.dModal.hide();
         },
     },
 };
