@@ -64,7 +64,7 @@
                                     </path>
                                     <rect x="6" y="14" width="12" height="8"></rect>
                                 </svg>
-                                Location
+                                Printer
                             </a>
                         </li>
 

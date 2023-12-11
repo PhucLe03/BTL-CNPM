@@ -6,7 +6,7 @@ const db = mysql.createConnection(
     {
         host: "localhost",
         user: data.user || "root",
-        password: data.password || "L@c02032003",
+        password: data.password || "Thanhhuy113",
         database: "QUANLYINAN",
     },
     function (err) {
