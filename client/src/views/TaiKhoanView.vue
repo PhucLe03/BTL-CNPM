@@ -154,7 +154,7 @@ import Header from "../components/header.vue";
                                                     Edit
                                                 </button>
                                                 <button @click="
-                                                    Delete(item.IDMAYIN)
+                                                    Delete(item.IDTAIKHOAN)
                                                     " class="px-4 py-1 rounded bg-red-800 text-white font-bold">
                                                     Delete
                                                 </button>
