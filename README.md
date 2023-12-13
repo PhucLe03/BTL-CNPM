@@ -8,7 +8,7 @@ Hệ thống cung cấp các chức năng quản lý các tác vụ in, theo dõ
 
 ## Các chức năng
 
-Ở đây chúng tôi chỉ phát triển mô-đun quản lí máy in cho SPSO gồm những chức năng sau:
+Ở đây nhóm chỉ phát triển module quản lí máy in cho SPSO gồm những chức năng sau:
 
 + Xem thông tin và trạng thái các máy in có trên hệ thống
 + Thêm máy in vào hệ thống
